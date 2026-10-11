@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Martin</title>
+  <link rel="icon" type="image/png" href="/assets/fox.png?v=2">
+  <link rel="apple-touch-icon" href="/assets/fox.png?v=2">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -145,6 +147,12 @@
       <!-- Single bottom divider -->
       <div class="dashed-divider"></div>
 
+      <p class="icon-credit">
+        <a href="https://www.flaticon.com/free-icons/fox" title="fox icons" target="_blank" rel="noopener noreferrer">
+          Fox icons created by amonrat rungreangfangsai - Flaticon
+        </a>
+      </p>
+
       <!-- Footer centered -->
       <div class="card-footer">@foxfoxesfox</div>
 
@@ -187,7 +195,6 @@
         state.ball.vy = 1.6 * (Math.random() > 0.5 ? 1 : -1);
       }
 
-      // AI paddle — tracks ball with a slight lag for realism
       function moveAI(pad, targetY) {
         const center = pad.y + PAD_H / 2;
         if (center < targetY - 2) pad.y += PAD_SPEED;
@@ -220,7 +227,6 @@
       }
 
       function loop() {
-        // Clear
         ctx.fillStyle = BG;
         ctx.fillRect(0, 0, W, H);
 
@@ -229,32 +235,26 @@
 
         const b = state.ball;
 
-        // Move ball
         b.x += b.vx;
         b.y += b.vy;
 
-        // Top / bottom bounce
         if (b.y - BALL / 2 <= 0) { b.y = BALL / 2; b.vy *= -1; }
         if (b.y + BALL / 2 >= H) { b.y = H - BALL / 2; b.vy *= -1; }
 
-        // AI moves both paddles
         moveAI(state.l, b.y);
         moveAI(state.r, b.y);
 
-        // Left paddle collision
         if (
           b.x - BALL / 2 <= PAD_W + 6 &&
           b.y >= state.l.y &&
           b.y <= state.l.y + PAD_H
         ) {
           b.x = PAD_W + 6 + BALL / 2;
-          b.vx = Math.abs(b.vx) * 1.03; // slight speed-up each hit
-          // Add spin based on where ball hits paddle
+          b.vx = Math.abs(b.vx) * 1.03;
           const hitPos = (b.y - (state.l.y + PAD_H / 2)) / (PAD_H / 2);
           b.vy = hitPos * 3.2;
         }
 
-        // Right paddle collision
         if (
           b.x + BALL / 2 >= W - PAD_W - 6 &&
           b.y >= state.r.y &&
@@ -266,12 +266,10 @@
           b.vy = hitPos * 3.2;
         }
 
-        // Cap speed so it doesn't get too crazy
         const maxSpeed = 6;
         if (Math.abs(b.vx) > maxSpeed) b.vx = maxSpeed * Math.sign(b.vx);
         if (Math.abs(b.vy) > maxSpeed) b.vy = maxSpeed * Math.sign(b.vy);
 
-        // Score — ball exits left or right
         if (b.x < 0) {
           state.r.score++;
           resetBall(1);
@@ -281,11 +279,8 @@
           resetBall(-1);
         }
 
-        // Draw paddles
-        drawPixel(6,         state.l.y, PAD_W, PAD_H, FG);
+        drawPixel(6, state.l.y, PAD_W, PAD_H, FG);
         drawPixel(W - 6 - PAD_W, state.r.y, PAD_W, PAD_H, FG);
-
-        // Draw ball (pixelated square)
         drawPixel(b.x - BALL / 2, b.y - BALL / 2, BALL, BALL, FG);
 
         requestAnimationFrame(loop);
@@ -293,34 +288,34 @@
 
       loop();
     })();
-    </script>
+  </script>
 
-    <!-- loading commitments-->
-    <script>
-      async function loadCommitments() {
-        const grid = document.getElementById('commitmentsGrid');
-        try {
-          const res = await fetch('assets/commitments.json');
-          if (!res.ok) throw new Error();
-          const items = await res.json();
+  <!-- loading commitments-->
+  <script>
+    async function loadCommitments() {
+      const grid = document.getElementById('commitmentsGrid');
+      try {
+        const res = await fetch('assets/commitments.json');
+        if (!res.ok) throw new Error();
+        const items = await res.json();
 
-          grid.innerHTML = items.map(item => `
-            <div class="commitment-item">
-              <span class="commitment-icon">${item.icon}</span>
-              <div class="commitment-body">
-                <div class="commitment-role">${item.role}</div>
-                <div class="commitment-org">${item.org}</div>
-                <div class="commitment-date">${item.date}</div>
-              </div>
+        grid.innerHTML = items.map(item => `
+          <div class="commitment-item">
+            <span class="commitment-icon">${item.icon}</span>
+            <div class="commitment-body">
+              <div class="commitment-role">${item.role}</div>
+              <div class="commitment-org">${item.org}</div>
+              <div class="commitment-date">${item.date}</div>
             </div>
-          `).join('');
+          </div>
+        `).join('');
 
-        } catch {
-          grid.innerHTML = `<p style="color:var(--text-muted);font-family:var(--font-mono);font-size:0.82rem">Could not load commitments.</p>`;
-        }
+      } catch {
+        grid.innerHTML = `<p style="color:var(--text-muted);font-family:var(--font-mono);font-size:0.82rem">Could not load commitments.</p>`;
       }
+    }
 
-      loadCommitments();
-    </script>
+    loadCommitments();
+  </script>
 </body>
 </html>
