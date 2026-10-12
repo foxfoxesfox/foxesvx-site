@@ -4,6 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Martin</title>
+  <meta name="description" content="Martin's personal page: Information Engineering & Media student in Singapore. Projects, artworks and photography." />
+  <meta property="og:title" content="Martin's page 🦊" />
+  <meta property="og:description" content="Projects, artworks and photography." />
+  <meta property="og:image" content="/assets/fox.png?v=2" />
   <link rel="icon" type="image/png" href="/assets/fox.png?v=2">
   <link rel="apple-touch-icon" href="/assets/fox.png?v=2">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,7 +18,7 @@
 <body>
 
   <div class="scanlines" aria-hidden="true"></div>
-  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
 
   <main class="card-wrapper">
 
@@ -24,21 +28,20 @@
 
       <!-- Top bar -->
       <div class="card-topbar">
-        <div class="topbar-nav">
+        <nav class="topbar-nav" aria-label="Main">
           <a href="projects.html" class="topbar-link">projects</a>
-          <span class="topbar-sep">·</span>
+          <span class="topbar-sep" aria-hidden="true">·</span>
           <a href="artworks.html" class="topbar-link">artworks</a>
-          <span class="topbar-sep">·</span>
+          <span class="topbar-sep" aria-hidden="true">·</span>
           <a href="gallery.html" class="topbar-link">gallery</a>
-        </div>
-        <div class="topbar-dots">
+        </nav>
+        <div class="topbar-dots" aria-hidden="true">
           <span class="dot dot-red"></span>
           <span class="dot dot-yellow"></span>
           <span class="dot dot-green"></span>
         </div>
       </div>
 
-      <!-- Single top divider -->
       <div class="dashed-divider"></div>
 
       <div class="card-body">
@@ -48,9 +51,9 @@
           <div class="name-block">
             <h1 class="name">Martin</h1>
             <div class="meta-pills">
-              <span>Singapore</span><span class="diamond">◇</span>
-              <span>INFJ-T</span><span class="diamond">◇</span>
-              <span>Taurus ♉</span><span class="diamond">◇</span>
+              <span>Singapore</span><span class="diamond" aria-hidden="true">◇</span>
+              <span>INFJ-T</span><span class="diamond" aria-hidden="true">◇</span>
+              <span>Taurus ♉</span><span class="diamond" aria-hidden="true">◇</span>
             </div>
           </div>
 
@@ -67,31 +70,35 @@
           <div class="info-box">
             <div class="info-box-label">Likes</div>
             <div class="info-box-content likes-grid">
-              <span class="tag">K-pop</span><span class="tag">Rock</span>
-              <span class="tag">EDM</span><span class="tag">Cafe Hopping</span>
+              <span class="tag">K-pop</span>
+              <span class="tag">Rock</span>
+              <span class="tag">EDM</span>
+              <span class="tag">Cafe Hopping</span>
               <span class="tag">Food</span>
               <span class="tag">Liminal Spaces Aesthetic</span>
               <span class="tag">Monochrome Aesthetic</span>
             </div>
           </div>
 
-          <div class="manga-strip">
+          <!-- TODO: replace picsum placeholders with your own images -->
+          <div class="manga-strip" aria-hidden="true">
             <div class="manga-panel" style="background-image:url('https://picsum.photos/seed/m1/150/100')"></div>
             <div class="manga-panel" style="background-image:url('https://picsum.photos/seed/m2/150/100')"></div>
             <div class="manga-panel" style="background-image:url('https://picsum.photos/seed/m3/150/100')"></div>
-            <div class="manga-overlay" aria-hidden="true"></div>
-          </div>
-          <!-- Pong Game -->
-          <div class="dino-box">
-            <canvas id="pongCanvas" width="380" height="80"></canvas>
+            <div class="manga-overlay"></div>
           </div>
 
+          <!-- Pong (AI vs AI) -->
+          <div class="dino-box">
+            <canvas id="pongCanvas" width="380" height="80" role="img" aria-label="Decorative pong game, computer versus computer"></canvas>
+          </div>
         </div>
 
         <!-- RIGHT -->
         <div class="col-right">
+          <!-- TODO: replace with your own photo -->
           <div class="profile-img-frame">
-            <img src="https://picsum.photos/seed/portrait/400/500" alt="Martin" width="400" height="500" loading="lazy" class="profile-img" />
+            <img src="https://picsum.photos/seed/portrait/400/500" alt="Portrait of Martin" width="400" height="500" loading="lazy" class="profile-img" />
             <div class="glitch-layer glitch-r" aria-hidden="true"></div>
             <div class="glitch-layer glitch-b" aria-hidden="true"></div>
             <div class="speed-lines" aria-hidden="true"></div>
@@ -100,7 +107,8 @@
           <div class="info-box">
             <div class="info-box-label">Hobbies</div>
             <div class="info-box-content likes-grid">
-              <span class="tag">Dance</span><span class="tag">Photography</span>
+              <span class="tag">Dance</span>
+              <span class="tag">Photography</span>
               <span class="tag">Gaming</span>
             </div>
           </div>
@@ -109,7 +117,7 @@
             <div class="info-box-label">Currently</div>
             <div class="info-box-content currently-list">
               <div class="currently-item">
-                <span id="currently-icon">📚</span>
+                <span id="currently-icon" aria-hidden="true">📚</span>
                 <span id="currently-text">Year 3 @ NTU</span>
               </div>
             </div>
@@ -121,7 +129,7 @@
       <div class="info-box commitments-full">
         <div class="info-box-label">Commitments &amp; CCA</div>
         <div id="commitmentsGrid" class="info-box-content commitments-grid">
-          <!-- loaded by JS -->
+          <noscript>Enable JavaScript to see my commitments.</noscript>
         </div>
       </div>
 
@@ -144,7 +152,6 @@
         </a>
       </div>
 
-      <!-- Single bottom divider -->
       <div class="dashed-divider"></div>
 
       <p class="icon-credit">
@@ -160,7 +167,8 @@
   </main>
 
   <script src="script.js"></script>
-  <!-- infinite pong-->
+
+  <!-- Infinite pong -->
   <script>
     (function () {
       const canvas = document.getElementById('pongCanvas');
@@ -168,131 +176,97 @@
       const ctx = canvas.getContext('2d');
 
       const W = 380, H = 80;
-      canvas.width = W; canvas.height = H;
+      const PAD_W = 5, PAD_H = 22, PAD_SPEED = 2.4, PAD_X = PAD_W + 6;
+      const BALL = 5, MAX_SPEED = 6;
 
-      const st = getComputedStyle(document.documentElement);
-      const FG  = st.getPropertyValue('--text').trim()      || '#1a1a1a';
-      const BG  = st.getPropertyValue('--card-bg').trim()   || '#f9f8f5';
-      const MUT = st.getPropertyValue('--text-muted').trim()|| '#999';
+      const css = getComputedStyle(document.documentElement);
+      const FG  = css.getPropertyValue('--text').trim()       || '#1a1a1a';
+      const BG  = css.getPropertyValue('--card-bg').trim()    || '#f9f8f5';
+      const MUT = css.getPropertyValue('--text-muted').trim() || '#999';
 
-      const PAD_W = 5, PAD_H = 22, PAD_SPEED = 2.4;
-      const BALL  = 5;
-
-      const state = {
-        l: { y: H / 2 - PAD_H / 2, score: 0 },
-        r: { y: H / 2 - PAD_H / 2, score: 0 },
-        ball: {
-          x: W / 2, y: H / 2,
-          vx: 2.6 * (Math.random() > 0.5 ? 1 : -1),
-          vy: 1.6 * (Math.random() > 0.5 ? 1 : -1)
-        }
-      };
+      const rand = () => (Math.random() > 0.5 ? 1 : -1);
+      const left  = { y: H / 2 - PAD_H / 2, score: 0 };
+      const right = { y: H / 2 - PAD_H / 2, score: 0 };
+      const b = { x: W / 2, y: H / 2, vx: 2.6 * rand(), vy: 1.6 * rand() };
 
       function resetBall(dir) {
-        state.ball.x  = W / 2;
-        state.ball.y  = H / 2;
-        state.ball.vx = 2.6 * dir;
-        state.ball.vy = 1.6 * (Math.random() > 0.5 ? 1 : -1);
+        b.x = W / 2;
+        b.y = H / 2;
+        b.vx = 2.6 * dir;
+        b.vy = 1.6 * rand();
       }
 
-      function moveAI(pad, targetY) {
+      function moveAI(pad) {
         const center = pad.y + PAD_H / 2;
-        if (center < targetY - 2) pad.y += PAD_SPEED;
-        else if (center > targetY + 2) pad.y -= PAD_SPEED;
+        if (center < b.y - 2) pad.y += PAD_SPEED;
+        else if (center > b.y + 2) pad.y -= PAD_SPEED;
         pad.y = Math.max(0, Math.min(H - PAD_H, pad.y));
       }
 
-      function drawPixel(x, y, w, h, color) {
-        ctx.fillStyle = color;
-        ctx.fillRect(Math.round(x), Math.round(y), w, h);
+      // dir: 1 = left paddle (ball goes right), -1 = right paddle (ball goes left)
+      function bounce(pad, dir) {
+        if (b.y < pad.y || b.y > pad.y + PAD_H) return;
+        b.x  = dir === 1 ? PAD_X + BALL / 2 : W - PAD_X - BALL / 2;
+        b.vx = dir * Math.abs(b.vx) * 1.03;
+        b.vy = ((b.y - (pad.y + PAD_H / 2)) / (PAD_H / 2)) * 3.2;
       }
 
-      function drawDashedNet() {
-        ctx.fillStyle = MUT;
-        ctx.globalAlpha = 0.35;
-        for (let y = 4; y < H; y += 10) {
-          ctx.fillRect(W / 2 - 1, y, 2, 5);
-        }
-        ctx.globalAlpha = 1;
-      }
-
-      function drawScore() {
-        ctx.fillStyle = MUT;
-        ctx.globalAlpha = 0.5;
-        ctx.font = `bold 14px var(--font-mono, monospace)`;
-        ctx.textAlign = 'center';
-        ctx.fillText(state.l.score, W / 2 - 30, 14);
-        ctx.fillText(state.r.score, W / 2 + 30, 14);
-        ctx.globalAlpha = 1;
-      }
-
-      function loop() {
+      function draw() {
         ctx.fillStyle = BG;
         ctx.fillRect(0, 0, W, H);
 
-        drawDashedNet();
-        drawScore();
+        ctx.fillStyle = MUT;
+        ctx.globalAlpha = 0.35;
+        for (let y = 4; y < H; y += 10) ctx.fillRect(W / 2 - 1, y, 2, 5);
 
-        const b = state.ball;
+        ctx.globalAlpha = 0.5;
+        ctx.font = 'bold 14px "DM Mono", monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText(left.score,  W / 2 - 30, 14);
+        ctx.fillText(right.score, W / 2 + 30, 14);
+        ctx.globalAlpha = 1;
 
+        ctx.fillStyle = FG;
+        ctx.fillRect(PAD_X - PAD_W, Math.round(left.y), PAD_W, PAD_H);
+        ctx.fillRect(W - PAD_X, Math.round(right.y), PAD_W, PAD_H);
+        ctx.fillRect(Math.round(b.x - BALL / 2), Math.round(b.y - BALL / 2), BALL, BALL);
+      }
+
+      function update() {
         b.x += b.vx;
         b.y += b.vy;
 
-        if (b.y - BALL / 2 <= 0) { b.y = BALL / 2; b.vy *= -1; }
+        if (b.y - BALL / 2 <= 0) { b.y = BALL / 2;     b.vy *= -1; }
         if (b.y + BALL / 2 >= H) { b.y = H - BALL / 2; b.vy *= -1; }
 
-        moveAI(state.l, b.y);
-        moveAI(state.r, b.y);
+        moveAI(left);
+        moveAI(right);
 
-        if (
-          b.x - BALL / 2 <= PAD_W + 6 &&
-          b.y >= state.l.y &&
-          b.y <= state.l.y + PAD_H
-        ) {
-          b.x = PAD_W + 6 + BALL / 2;
-          b.vx = Math.abs(b.vx) * 1.03;
-          const hitPos = (b.y - (state.l.y + PAD_H / 2)) / (PAD_H / 2);
-          b.vy = hitPos * 3.2;
-        }
+        if (b.x - BALL / 2 <= PAD_X)     bounce(left, 1);
+        if (b.x + BALL / 2 >= W - PAD_X) bounce(right, -1);
 
-        if (
-          b.x + BALL / 2 >= W - PAD_W - 6 &&
-          b.y >= state.r.y &&
-          b.y <= state.r.y + PAD_H
-        ) {
-          b.x = W - PAD_W - 6 - BALL / 2;
-          b.vx = -Math.abs(b.vx) * 1.03;
-          const hitPos = (b.y - (state.r.y + PAD_H / 2)) / (PAD_H / 2);
-          b.vy = hitPos * 3.2;
-        }
+        b.vx = Math.max(-MAX_SPEED, Math.min(MAX_SPEED, b.vx));
+        b.vy = Math.max(-MAX_SPEED, Math.min(MAX_SPEED, b.vy));
 
-        const maxSpeed = 6;
-        if (Math.abs(b.vx) > maxSpeed) b.vx = maxSpeed * Math.sign(b.vx);
-        if (Math.abs(b.vy) > maxSpeed) b.vy = maxSpeed * Math.sign(b.vy);
+        if (b.x < 0) { right.score++; resetBall(1); }
+        if (b.x > W) { left.score++;  resetBall(-1); }
+      }
 
-        if (b.x < 0) {
-          state.r.score++;
-          resetBall(1);
-        }
-        if (b.x > W) {
-          state.l.score++;
-          resetBall(-1);
-        }
-
-        drawPixel(6, state.l.y, PAD_W, PAD_H, FG);
-        drawPixel(W - 6 - PAD_W, state.r.y, PAD_W, PAD_H, FG);
-        drawPixel(b.x - BALL / 2, b.y - BALL / 2, BALL, BALL, FG);
-
+      function loop() {
+        update();
+        draw();
         requestAnimationFrame(loop);
       }
 
-      loop();
+      // Respect "reduce motion": draw one still frame instead of animating
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) draw();
+      else loop();
     })();
   </script>
 
-  <!-- loading commitments-->
+  <!-- Commitments -->
   <script>
-    async function loadCommitments() {
+    (async function () {
       const grid = document.getElementById('commitmentsGrid');
       try {
         const res = await fetch('assets/commitments.json');
@@ -301,7 +275,7 @@
 
         grid.innerHTML = items.map(item => `
           <div class="commitment-item">
-            <span class="commitment-icon">${item.icon}</span>
+            <span class="commitment-icon" aria-hidden="true">${item.icon}</span>
             <div class="commitment-body">
               <div class="commitment-role">${item.role}</div>
               <div class="commitment-org">${item.org}</div>
@@ -309,13 +283,10 @@
             </div>
           </div>
         `).join('');
-
       } catch {
-        grid.innerHTML = `<p style="color:var(--text-muted);font-family:var(--font-mono);font-size:0.82rem">Could not load commitments.</p>`;
+        grid.innerHTML = '<p class="load-error">Could not load commitments.</p>';
       }
-    }
-
-    loadCommitments();
+    })();
   </script>
 </body>
 </html>

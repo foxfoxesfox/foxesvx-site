@@ -4,6 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Artworks — Martin</title>
+  <meta name="description" content="Digital and physical artworks by Martin." />
+  <meta property="og:title" content="Artworks — Martin" />
+  <meta property="og:description" content="Digital and physical artworks." />
+  <meta property="og:image" content="/assets/fox.png?v=2" />
   <link rel="icon" type="image/png" href="/assets/fox.png?v=2">
   <link rel="apple-touch-icon" href="/assets/fox.png?v=2">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,11 +18,11 @@
 <body>
 
   <div class="scanlines" aria-hidden="true"></div>
-  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
 
-  <!-- Lightbox -->
-  <div id="lightbox" class="lightbox" onclick="closeLightbox()">
-    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <!-- Lightbox: clicking anywhere (including the close button) closes it -->
+  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Artwork viewer">
+    <button class="lightbox-close" aria-label="Close">✕</button>
     <img id="lightboxImg" src="" alt="" class="lightbox-img" />
     <div id="lightboxCaption" class="lightbox-caption"></div>
   </div>
@@ -29,14 +33,14 @@
 
     <div class="card">
       <div class="card-topbar">
-        <div class="topbar-nav">
+        <nav class="topbar-nav" aria-label="Main">
           <a href="projects.html" class="topbar-link">projects</a>
-          <span class="topbar-sep">·</span>
-          <a href="artworks.html" class="topbar-link topbar-link-active">artworks</a>
-          <span class="topbar-sep">·</span>
+          <span class="topbar-sep" aria-hidden="true">·</span>
+          <a href="artworks.html" class="topbar-link topbar-link-active" aria-current="page">artworks</a>
+          <span class="topbar-sep" aria-hidden="true">·</span>
           <a href="gallery.html" class="topbar-link">gallery</a>
-        </div>
-        <div class="topbar-dots">
+        </nav>
+        <div class="topbar-dots" aria-hidden="true">
           <span class="dot dot-red"></span>
           <span class="dot dot-yellow"></span>
           <span class="dot dot-green"></span>
@@ -45,26 +49,26 @@
 
       <div class="page-content">
         <h2 class="page-title">Artworks<span class="exclaim">.</span></h2>
-        <!-- <p class="page-subtitle">Digital &amp; physical work.</p> -->
         <div class="dashed-divider"></div>
 
-        <!-- Digital section -->
-        <div class="section-label" style="margin-bottom:14px">Digital</div>
+        <!-- Digital -->
+        <h3 class="section-label section-label-spaced">Digital</h3>
         <div id="digitalGrid" class="art-grid art-grid-digital">
-          <div class="art-card skeleton-card"></div>
+          <div class="art-card skeleton-card" aria-hidden="true"></div>
         </div>
 
         <div class="dashed-divider"></div>
 
-        <!-- Physical section -->
-        <div class="section-label" style="margin-bottom:14px">Physical</div>
+        <!-- Physical -->
+        <h3 class="section-label section-label-spaced">Physical</h3>
         <div id="physicalGrid" class="art-grid">
-          <div class="art-card skeleton-card"></div>
-          <div class="art-card skeleton-card"></div>
-          <div class="art-card skeleton-card"></div>
-          <div class="art-card skeleton-card"></div>
+          <div class="art-card skeleton-card" aria-hidden="true"></div>
+          <div class="art-card skeleton-card" aria-hidden="true"></div>
+          <div class="art-card skeleton-card" aria-hidden="true"></div>
+          <div class="art-card skeleton-card" aria-hidden="true"></div>
         </div>
 
+        <noscript><p class="load-error">Enable JavaScript to view the artworks.</p></noscript>
       </div>
 
       <p class="icon-credit">
@@ -80,79 +84,53 @@
 
   <script src="script.js"></script>
   <script>
-    // ── Lightbox ──────────────────────────────────────────
-    let currentIndex = 0;
-    let currentItems = [];
+    const FOLDER = 'assets/artworks/';
+    const lightbox = initLightbox(FOLDER);
+    let items = []; // digital first, then physical (matches grid click indexes)
 
-    function openLightboxAt(index) {
-      currentIndex = index;
-      const item = currentItems[index];
-      document.getElementById('lightboxImg').src = 'assets/artworks/' + item.file;
-      document.getElementById('lightboxCaption').textContent = [item.title, item.sub].filter(Boolean).join(' · ');
-      document.getElementById('lightbox').classList.add('open');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeLightbox() {
-      document.getElementById('lightbox').classList.remove('open');
-      document.body.style.overflow = '';
-    }
-
-    document.addEventListener('keydown', e => {
-      if (!document.getElementById('lightbox').classList.contains('open')) return;
-      if (e.key === 'Escape')      closeLightbox();
-      if (e.key === 'ArrowRight')  openLightboxAt((currentIndex + 1) % currentItems.length);
-      if (e.key === 'ArrowLeft')   openLightboxAt((currentIndex - 1 + currentItems.length) % currentItems.length);
-    });
-
-    document.getElementById('lightbox').addEventListener('click', closeLightbox);
-
-    // ── Build a grid from an array of items ──────────────
-    function buildGrid(gridEl, items, startIndex) {
+    function buildGrid(gridEl, list, startIndex) {
       gridEl.innerHTML = '';
-      items.forEach((item, i) => {
-        const card = document.createElement('div');
+      list.forEach((item, i) => {
+        const card = document.createElement('button');
+        card.type = 'button';
         card.className = 'art-card';
+        card.setAttribute('aria-label', 'View ' + (item.title || 'artwork'));
         card.innerHTML = `
-          <img src="assets/artworks/${item.file}" alt="${item.title}" loading="lazy" class="art-img" />
+          <img src="${FOLDER}${item.file}" alt="${item.title || ''}" loading="lazy" class="art-img" />
           <div class="art-overlay">
-            <div class="art-title">${item.title}</div>
+            <div class="art-title">${item.title || ''}</div>
             ${item.sub ? `<div class="art-sub">${item.sub}</div>` : ''}
           </div>
         `;
-        card.addEventListener('click', () => openLightboxAt(startIndex + i));
+        card.addEventListener('click', () => lightbox.open(items, startIndex + i));
         gridEl.appendChild(card);
       });
     }
 
-    // ── Load artworks from manifest ───────────────────────
     async function loadArtworks() {
       const digitalGrid  = document.getElementById('digitalGrid');
       const physicalGrid = document.getElementById('physicalGrid');
 
-      let artworks = [];
       try {
-        const res = await fetch('assets/artworks/artworks.json');
+        const res = await fetch(FOLDER + 'artworks.json');
         if (!res.ok) throw new Error('manifest not found');
-        artworks = await res.json();
-      } catch (err) {
-        digitalGrid.innerHTML  = `<p style="color:var(--text-muted);font-family:var(--font-mono);font-size:0.82rem">Could not load artworks.json</p>`;
+        const artworks = await res.json();
+
+        const digital  = artworks.filter(a => a.category === 'digital');
+        const physical = artworks.filter(a => a.category === 'physical');
+
+        items = [...digital, ...physical];
+        buildGrid(digitalGrid, digital, 0);
+        buildGrid(physicalGrid, physical, digital.length);
+      } catch {
+        digitalGrid.innerHTML = '<p class="load-error">Could not load artworks.json</p>';
         physicalGrid.innerHTML = '';
-        return;
       }
-
-      const digital  = artworks.filter(a => a.category === 'digital');
-      const physical = artworks.filter(a => a.category === 'physical');
-
-      // currentItems is the full list for arrow key nav across both grids
-      currentItems = artworks;
-
-      buildGrid(digitalGrid,  digital,  0);
-      buildGrid(physicalGrid, physical, digital.length);
     }
 
     loadArtworks();
   </script>
+
 
 </body>
 </html>

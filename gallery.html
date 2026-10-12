@@ -4,6 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Gallery — Martin</title>
+  <meta name="description" content="Photography by Martin." />
+  <meta property="og:title" content="Gallery — Martin" />
+  <meta property="og:description" content="Photography gallery." />
+  <meta property="og:image" content="/assets/fox.png?v=2" />
   <link rel="icon" type="image/png" href="/assets/fox.png?v=2">
   <link rel="apple-touch-icon" href="/assets/fox.png?v=2">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,11 +18,11 @@
 <body>
 
   <div class="scanlines" aria-hidden="true"></div>
-  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
 
-  <!-- Lightbox -->
-  <div id="lightbox" class="lightbox">
-    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <!-- Lightbox: clicking anywhere (including the close button) closes it -->
+  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+    <button class="lightbox-close" aria-label="Close">✕</button>
     <img id="lightboxImg" src="" alt="" class="lightbox-img" />
   </div>
 
@@ -28,14 +32,14 @@
 
     <div class="card">
       <div class="card-topbar">
-        <div class="topbar-nav">
+        <nav class="topbar-nav" aria-label="Main">
           <a href="projects.html" class="topbar-link">projects</a>
-          <span class="topbar-sep">·</span>
+          <span class="topbar-sep" aria-hidden="true">·</span>
           <a href="artworks.html" class="topbar-link">artworks</a>
-          <span class="topbar-sep">·</span>
-          <a href="gallery.html" class="topbar-link topbar-link-active">gallery</a>
-        </div>
-        <div class="topbar-dots">
+          <span class="topbar-sep" aria-hidden="true">·</span>
+          <a href="gallery.html" class="topbar-link topbar-link-active" aria-current="page">gallery</a>
+        </nav>
+        <div class="topbar-dots" aria-hidden="true">
           <span class="dot dot-red"></span>
           <span class="dot dot-yellow"></span>
           <span class="dot dot-green"></span>
@@ -46,16 +50,18 @@
         <h2 class="page-title">Gallery<span class="exclaim">.</span></h2>
         <div class="dashed-divider"></div>
 
-        <div id="photoCount" class="gallery-count"></div>
+        <div id="photoCount" class="gallery-count" aria-live="polite"></div>
 
         <div id="photoGrid" class="art-grid gallery-grid">
-          <div class="art-card skeleton-card"></div>
-          <div class="art-card skeleton-card"></div>
-          <div class="art-card skeleton-card"></div>
-          <div class="art-card skeleton-card"></div>
-          <div class="art-card skeleton-card"></div>
-          <div class="art-card skeleton-card"></div>
+          <div class="art-card skeleton-card" aria-hidden="true"></div>
+          <div class="art-card skeleton-card" aria-hidden="true"></div>
+          <div class="art-card skeleton-card" aria-hidden="true"></div>
+          <div class="art-card skeleton-card" aria-hidden="true"></div>
+          <div class="art-card skeleton-card" aria-hidden="true"></div>
+          <div class="art-card skeleton-card" aria-hidden="true"></div>
         </div>
+
+        <noscript><p class="load-error">Enable JavaScript to view the gallery.</p></noscript>
       </div>
 
       <p class="icon-credit">
@@ -71,57 +77,40 @@
 
   <script src="script.js"></script>
   <script>
-    let currentIndex = 0;
-    let currentPhotos = [];
-
-    function openLightboxAt(index) {
-      currentIndex = index;
-      document.getElementById('lightboxImg').src = 'assets/photos/' + currentPhotos[index].file;
-      document.getElementById('lightbox').classList.add('open');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeLightbox() {
-      document.getElementById('lightbox').classList.remove('open');
-      document.body.style.overflow = '';
-    }
-
-    document.getElementById('lightbox').addEventListener('click', closeLightbox);
-
-    document.addEventListener('keydown', e => {
-      if (!document.getElementById('lightbox').classList.contains('open')) return;
-      if (e.key === 'Escape')     closeLightbox();
-      if (e.key === 'ArrowRight') openLightboxAt((currentIndex + 1) % currentPhotos.length);
-      if (e.key === 'ArrowLeft')  openLightboxAt((currentIndex - 1 + currentPhotos.length) % currentPhotos.length);
-    });
+    const FOLDER = 'assets/photos/';
+    const lightbox = initLightbox(FOLDER);
 
     async function loadGallery() {
       const grid  = document.getElementById('photoGrid');
       const count = document.getElementById('photoCount');
+      let photos;
 
       try {
-        const res = await fetch('assets/photos/photos.json');
+        const res = await fetch(FOLDER + 'photos.json');
         if (!res.ok) throw new Error();
-        currentPhotos = await res.json();
+        photos = await res.json();
       } catch {
-        grid.innerHTML = `<p style="color:var(--text-muted);font-family:var(--font-mono);font-size:0.82rem;grid-column:1/-1;padding:20px 0">No photos found. Add images to <code>assets/photos/</code> and update <code>photos.json</code>.</p>`;
+        grid.innerHTML = '<p class="load-error load-error-wide">No photos found. Add images to <code>assets/photos/</code> and update <code>photos.json</code>.</p>';
         return;
       }
 
-      count.textContent = `${currentPhotos.length} photo${currentPhotos.length !== 1 ? 's' : ''}`;
+      count.textContent = `${photos.length} photo${photos.length === 1 ? '' : 's'}`;
 
       grid.innerHTML = '';
-      currentPhotos.forEach((photo, i) => {
-        const card = document.createElement('div');
+      photos.forEach((photo, i) => {
+        const card = document.createElement('button');
+        card.type = 'button';
         card.className = 'art-card gallery-card';
-        card.innerHTML = `<img src="assets/photos/${photo.file}" alt="" loading="lazy" class="art-img gallery-img" />`;
-        card.addEventListener('click', () => openLightboxAt(i));
+        card.setAttribute('aria-label', `View photo ${i + 1}`);
+        card.innerHTML = `<img src="${FOLDER}${photo.file}" alt="${photo.alt || ''}" loading="lazy" class="art-img gallery-img" />`;
+        card.addEventListener('click', () => lightbox.open(photos, i));
         grid.appendChild(card);
       });
     }
 
     loadGallery();
   </script>
+
 
 </body>
 </html>

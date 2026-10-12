@@ -4,6 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Projects — Martin</title>
+  <meta name="description" content="Projects by Martin: OSINT Explorer and QRForge, built with vanilla HTML, CSS and JavaScript." />
+  <meta property="og:title" content="Projects — Martin" />
+  <meta property="og:description" content="OSINT Explorer, QRForge and more on GitHub." />
+  <meta property="og:image" content="/assets/fox.png?v=2" />
   <link rel="icon" type="image/png" href="/assets/fox.png?v=2">
   <link rel="apple-touch-icon" href="/assets/fox.png?v=2">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,7 +18,7 @@
 <body>
 
   <div class="scanlines" aria-hidden="true"></div>
-  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
 
   <main class="card-wrapper">
 
@@ -22,14 +26,14 @@
 
     <div class="card">
       <div class="card-topbar">
-        <div class="topbar-nav">
-          <a href="projects.html" class="topbar-link topbar-link-active">projects</a>
-          <span class="topbar-sep">·</span>
+        <nav class="topbar-nav" aria-label="Main">
+          <a href="projects.html" class="topbar-link topbar-link-active" aria-current="page">projects</a>
+          <span class="topbar-sep" aria-hidden="true">·</span>
           <a href="artworks.html" class="topbar-link">artworks</a>
-          <span class="topbar-sep">·</span>
+          <span class="topbar-sep" aria-hidden="true">·</span>
           <a href="gallery.html" class="topbar-link">gallery</a>
-        </div>
-        <div class="topbar-dots">
+        </nav>
+        <div class="topbar-dots" aria-hidden="true">
           <span class="dot dot-red"></span>
           <span class="dot dot-yellow"></span>
           <span class="dot dot-green"></span>
@@ -38,20 +42,21 @@
 
       <div class="page-content">
         <h2 class="page-title">Projects<span class="exclaim">.</span></h2>
-        <!-- <p class="page-subtitle">Things I've built.</p> -->
         <div class="dashed-divider"></div>
 
-        <div class="featured-project">
+        <!-- Featured: OSINT Explorer -->
+        <article class="featured-project">
           <div class="featured-badge">Featured</div>
           <div class="featured-body">
             <div class="featured-text">
-              <div class="featured-title">🔍 OSINT Explorer</div>
+              <h3 class="featured-title">🔍 OSINT Explorer</h3>
               <p class="featured-desc">
                 An auto-updating open-source intelligence directory, powered by the
                 <a href="https://github.com/jivoi/awesome-osint" target="_blank" rel="noopener noreferrer">awesome-osint</a>
                 repository. Built with vanilla HTML, CSS, and JavaScript — features
                 live GitHub API fetching, category filtering, sortable columns.
               </p>
+              <!-- TODO: add one line on what you learned or the problem it solves -->
               <div class="featured-tags">
                 <span class="tag">HTML</span>
                 <span class="tag">CSS</span>
@@ -63,7 +68,8 @@
                 <a href="https://github.com/foxfoxesfox/osint-explorer" target="_blank" rel="noopener noreferrer" class="btn-ghost">View on GitHub</a>
               </div>
             </div>
-            <div class="featured-preview">
+            <!-- TODO: replace placeholder with a real screenshot -->
+            <div class="featured-preview" aria-hidden="true">
               <div class="preview-placeholder">
                 <span class="preview-label">osint-explorer</span>
                 <div class="preview-lines">
@@ -77,15 +83,16 @@
               </div>
             </div>
           </div>
-        </div>
+        </article>
 
         <div class="dashed-divider"></div>
 
-        <div class="featured-project">
+        <!-- New: QRForge -->
+        <article class="featured-project">
           <div class="featured-badge">New</div>
           <div class="featured-body">
             <div class="featured-text">
-              <div class="featured-title">🧾 QRForge</div>
+              <h3 class="featured-title">🧾 QRForge</h3>
               <p class="featured-desc">
                 A live QR code generator for links with print-ready exports, customizable colors,
                 caption text, size controls, and adjustable padding. Built with vanilla HTML, CSS,
@@ -102,7 +109,7 @@
                 <a href="https://github.com/foxfoxesfox/qr-code-generator" target="_blank" rel="noopener noreferrer" class="btn-ghost">View on GitHub</a>
               </div>
             </div>
-            <div class="featured-preview">
+            <div class="featured-preview" aria-hidden="true">
               <div class="preview-placeholder">
                 <span class="preview-label">qrforge</span>
                 <div class="preview-lines">
@@ -116,19 +123,19 @@
               </div>
             </div>
           </div>
-        </div>
+        </article>
 
         <div class="dashed-divider"></div>
 
         <div class="github-section">
           <div class="section-label">More on GitHub</div>
           <a href="https://github.com/foxfoxesfox" target="_blank" rel="noopener noreferrer" class="github-card">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
             <div>
               <div class="github-card-title">github.com/foxfoxesfox</div>
               <div class="github-card-sub">View all repositories and contributions</div>
             </div>
-            <span style="margin-left:auto">↗</span>
+            <span class="github-arrow" aria-hidden="true">↗</span>
           </a>
         </div>
 
