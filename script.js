@@ -5,6 +5,7 @@ if (dot) {
     document.addEventListener('mousemove', e => {
       dot.style.left = e.clientX + 'px';
       dot.style.top  = e.clientY + 'px';
+      dot.style.opacity = 1;
     });
   } else {
     dot.style.display = 'none';
@@ -91,6 +92,7 @@ function initLightbox(folder) {
 
   const img = document.getElementById('lightboxImg');
   const caption = document.getElementById('lightboxCaption'); // optional
+  const closeBtn = box.querySelector('.lightbox-close');
   let items = [];
   let current = 0;
   let lastFocused = null;
@@ -125,6 +127,7 @@ function initLightbox(folder) {
       show(index);
       box.classList.add('open');
       document.body.style.overflow = 'hidden';
+      if (closeBtn) closeBtn.focus();
     }
   };
 }

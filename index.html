@@ -264,15 +264,20 @@
         if (b.x > W) { left.score++;  resetBall(-1); }
       }
 
-      function loop() {
-        update();
+      // Fixed 60 steps/sec so the game runs at the same speed on 120Hz screens
+      const STEP = 1000 / 60;
+      let last = performance.now(), acc = 0;
+      function loop(now) {
+        acc += Math.min(now - last, 100);
+        last = now;
+        while (acc >= STEP) { update(); acc -= STEP; }
         draw();
         requestAnimationFrame(loop);
       }
 
       // Respect "reduce motion": draw one still frame instead of animating
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) draw();
-      else loop();
+      else requestAnimationFrame(loop);
     })();
   </script>
 
