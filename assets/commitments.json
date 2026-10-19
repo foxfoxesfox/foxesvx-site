@@ -2,50 +2,55 @@
   {
     "icon": "🦊",
     "role": "Student Mentor",
-    "org": "Student Mentor Programme — NYP",
+    "org": "Student Mentor Programme - NYP",
     "date": "Mar 2018 - Mar 2019"
   },
-
   {
     "icon": "🦊",
     "role": "Class Representative",
     "org": "SEG Class Roles - NYP",
     "date": "Apr 2018 - Mar 2019"
   },
-
   {
     "icon": "🦊",
     "role": "Orientation Group Leader",
     "org": "SEG Freshman Orientation - NYP",
     "date": "Apr 2019"
   },
-
   {
     "icon": "🦊",
     "role": "Peer Tutor & Co-Founder",
     "org": "SEG Peer Tutoring Club - NYP",
     "date": "Oct 2018 - Mar 2019"
   },
-  
   {
     "icon": "🦊",
-    "role": "Welare & Logistics Main Commitee",
+    "role": "Welfare & Logistics Main Committee",
     "org": "Enitio 2025 Freshman Orientation - NTU",
     "date": "Aug 2024 - Aug 2025"
   },
-
   {
     "icon": "🦊",
-    "role": "Welare & Logistics Sub Commitee",
+    "role": "Welfare & Logistics Sub Committee",
     "org": "Enitio 2026 Freshman Orientation - NTU",
     "date": "Aug 2025 - Aug 2026"
   },
-
   {
     "icon": "🦊",
-    "role": "Logistics Main Commitee",
+    "role": "Logistics Main Committee",
     "org": "NiceHack @ NTU 2026",
     "date": "May 2026 - Sep 2026"
+  },
+  {
+    "icon": "🦊",
+    "role": "Vice-President, Welfare & Logistics",
+    "org": "Enitio 2027 Freshman Orientation - NTU",
+    "date": "Oct 2026 - Present"
+  },
+  {
+    "icon": "🦊",
+    "role": "Events Sub Committee",
+    "org": "NTU E-sports Club",
+    "date": "Oct 2026 - Present"
   }
-
 ]

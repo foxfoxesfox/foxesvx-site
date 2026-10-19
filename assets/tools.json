@@ -1,0 +1,60 @@
+[
+  {
+    "category": "Design & interface craft",
+    "tools": [
+      { "name": "Impeccable", "url": "https://github.com/pbakaus/impeccable", "desc": "A design language for AI agents: briefs, critiques and polish passes that make interfaces look intentional." },
+      { "name": "Make Interfaces Feel Better", "url": "https://github.com/jakubkrehel/make-interfaces-feel-better", "desc": "The small details (radii, hit areas, numerals, motion) that make an interface feel polished." },
+      { "name": "transitions.dev", "url": "https://github.com/Jakubantalik/transitions.dev", "desc": "A library of 40+ crafted UI transitions, with a skill so your agent uses them properly." },
+      { "name": "Motion Design Skill", "url": "https://github.com/lottiefiles/motion-design-skill", "desc": "LottieFiles' timing, easing and choreography principles, adapted from Disney animation for UI." },
+      { "name": "Color Expert", "url": "https://github.com/meodai/skill.color-expert", "desc": "Colour science for agents: colour spaces, contrast (APCA, WCAG), palettes and pigment mixing." }
+    ]
+  },
+  {
+    "category": "Animation",
+    "tools": [
+      { "name": "GSAP Skills", "url": "https://github.com/greensock/gsap-skills", "desc": "Official skills that teach agents to write GSAP animations, timelines and scroll effects the right way." },
+      { "name": "Anime.js", "url": "https://animejs.com", "desc": "A fast, lightweight JavaScript animation engine." },
+      { "name": "Motion", "url": "https://motion.dev", "desc": "Animation library for React, JavaScript and Vue (formerly Framer Motion)." },
+      { "name": "Remotion Skills", "url": "https://github.com/remotion-dev/skills", "desc": "Agent skills for Remotion, where videos are built with React code." },
+      { "name": "HyperFrames", "url": "https://github.com/heygen-com/hyperframes", "desc": "Write HTML, render video. Made for agents building promos and motion graphics." }
+    ]
+  },
+  {
+    "category": "Video, audio & images",
+    "tools": [
+      { "name": "Whisper", "url": "https://github.com/openai/whisper", "desc": "OpenAI's open-source speech recognition: turns audio into accurate transcripts." },
+      { "name": "video-use", "url": "https://github.com/browser-use/video-use", "desc": "Edit your own footage with a coding agent: cuts, captions and assembly." },
+      { "name": "claude-watch", "url": "https://github.com/taoufik123-collab/claude-watch", "desc": "Lets Claude watch a video, from key frames and a transcript to a structured report." },
+      { "name": "color-grade-ai", "url": "https://github.com/isaacrowntree/color-grade-ai", "desc": "Generates .cube LUTs to colour-correct footage in DaVinci Resolve and Premiere Pro." },
+      { "name": "Aseprite AI Artist", "url": "https://github.com/with-pebbly/aseprite-ai-artist", "desc": "Your agent paints, animates and exports pixel art right inside Aseprite." }
+    ]
+  },
+  {
+    "category": "Agent skills & workflow",
+    "tools": [
+      { "name": "Agent Skills", "url": "https://github.com/addyosmani/agent-skills", "desc": "Addy Osmani's production-grade engineering skills: planning, testing, reviewing and shipping." },
+      { "name": "Ponytail", "url": "https://github.com/dietrichgebert/ponytail", "desc": "Makes your agent think like the laziest senior dev: the smallest change that fully works." },
+      { "name": "Humanizer", "url": "https://github.com/blader/humanizer", "desc": "Strips the tell-tale signs of AI-generated writing out of text." },
+      { "name": "Academic Research Skills", "url": "https://github.com/imbad0202/academic-research-skills", "desc": "A full research pipeline for Claude Code: research, write, review, revise, finalise." },
+      { "name": "Obsidian Skills", "url": "https://github.com/kepano/obsidian-skills", "desc": "Teaches agents the Obsidian CLI and its open formats: Markdown, Bases and JSON Canvas." },
+      { "name": "Supabase Agent Skills", "url": "https://github.com/supabase/agent-skills", "desc": "Helps agents build on Supabase correctly, from schemas to security." },
+      { "name": "Graphify", "url": "https://github.com/Graphify-Labs/graphify", "desc": "Turns a codebase and its docs into a knowledge graph your agent can query." },
+      { "name": "CodeBurn", "url": "https://github.com/getagentseal/codeburn", "desc": "Tracks AI coding token usage and cost locally, across Claude Code, Cursor, Codex and more." }
+    ]
+  },
+  {
+    "category": "Security",
+    "tools": [
+      { "name": "SkillSpector", "url": "https://github.com/nvidia/skillspector", "desc": "NVIDIA's scanner that checks agent skills for malicious patterns and prompt injection before you install them." },
+      { "name": "Claude Security", "url": "https://github.com/anthropics/claude-plugins-official/tree/main/plugins/claude-security", "desc": "Anthropic's plugin that scans a codebase for vulnerabilities and drafts verified fixes." }
+    ]
+  },
+  {
+    "category": "Inspiration",
+    "tools": [
+      { "name": "Design Spells", "url": "https://designspells.com", "desc": "Design details that feel like magic: a growing collection of delightful micro-interactions." },
+      { "name": "Details", "url": "https://www.details.so/inspo/category/services", "desc": "Section-by-section examples from real websites, handy for comparing layouts and details." },
+      { "name": "Godly", "url": "https://godly.design", "desc": "A curated gallery of the best web and interface design on the internet." }
+    ]
+  }
+]

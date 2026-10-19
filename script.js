@@ -76,45 +76,29 @@ if (!reduceMotion) {
   document.body.prepend(layer);
 }
 
-// ── Typing cycle on "Currently" ──
-const currentTextEl = document.getElementById('currently-text');
+// ── Intro types itself out once ──
+const intro = document.getElementById('intro');
+if (intro && !reduceMotion) {
+  const text = intro.textContent;
+  // Screen readers get the whole sentence; the typed copy is visual only.
+  // The not-yet-typed part keeps its space (visibility: hidden) so nothing reflows.
+  const full = Object.assign(document.createElement('span'), { className: 'sr-only', textContent: text });
+  const shown = document.createElement('span');
+  shown.setAttribute('aria-hidden', 'true');
+  const typed = document.createElement('span');
+  const caret = Object.assign(document.createElement('span'), { className: 'caret' });
+  const rest = Object.assign(document.createElement('span'), { className: 'untyped', textContent: text });
+  shown.append(typed, caret, rest);
+  intro.replaceChildren(full, shown);
 
-if (currentTextEl && !reduceMotion) {
-  const statuses = [
-    'Learning to dance better',
-    'Looking to build more personal projects',
-    'Vibe coding my own iOS application'
-  ];
-  let idx = -1;
-
-  function typeText(text, cb) {
-    currentTextEl.textContent = '';
-    let i = 0;
-    const t = setInterval(() => {
-      currentTextEl.textContent += text[i++];
-      if (i >= text.length) {
-        clearInterval(t);
-        setTimeout(cb, 2500);
-      }
-    }, 60);
-  }
-
-  function eraseText(cb) {
-    const t = setInterval(() => {
-      currentTextEl.textContent = currentTextEl.textContent.slice(0, -1);
-      if (!currentTextEl.textContent) {
-        clearInterval(t);
-        cb();
-      }
-    }, 35);
-  }
-
-  function cycle() {
-    idx = (idx + 1) % statuses.length;
-    eraseText(() => typeText(statuses[idx], cycle));
-  }
-
-  setTimeout(cycle, 3000);
+  let i = 0;
+  setTimeout(function step() {
+    i++;
+    typed.textContent = text.slice(0, i);
+    rest.textContent = text.slice(i);
+    if (i < text.length) setTimeout(step, text[i - 1] === '.' || text[i - 1] === ',' ? 180 : 20);
+    else setTimeout(() => caret.remove(), 1600);
+  }, 700);
 }
 
 // ── Shared lightbox (artworks + gallery) ──

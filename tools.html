@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tools — Martin</title>
+  <meta name="description" content="Skills, libraries and sites I use when building." />
+  <link rel="canonical" href="https://foxesvx.dev/tools" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Martin's page 🦊" />
+  <meta property="og:title" content="Tools — Martin" />
+  <meta property="og:description" content="Skills, libraries and sites I use when building." />
+  <meta property="og:url" content="https://foxesvx.dev/tools" />
+  <meta property="og:image" content="/assets/fox.png?v=3" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Tools — Martin" />
+  <meta name="twitter:description" content="Skills, libraries and sites I use when building." />
+  <meta name="twitter:image" content="/assets/fox.png?v=3" />
+
+  <link rel="icon" type="image/svg+xml" href="/assets/fox-head.svg?v=3">
+  <link rel="icon" type="image/png" href="/assets/fox.png?v=3">
+  <link rel="apple-touch-icon" href="/assets/fox.png?v=3">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shantell+Sans:ital,wght,BNCE,INFM@0,300..800,-100..100,0..100&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- Wobble filters: three seeds so drawn lines can "boil" -->
+  <svg class="defs" aria-hidden="true" focusable="false">
+    <filter id="rough-a"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="3" /><feDisplacementMap in="SourceGraphic" scale="3.5" /></filter>
+    <filter id="rough-b"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="11" /><feDisplacementMap in="SourceGraphic" scale="3.5" /></filter>
+    <filter id="rough-c"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="27" /><feDisplacementMap in="SourceGraphic" scale="3.5" /></filter>
+  </svg>
+  <a class="skip" href="#main">skip to content</a>
+
+  <header class="site-header">
+    <a href="index.html" class="brand lettered" aria-label="martin's page, home">
+      <svg class="doodle" viewBox="34 8 132 124" aria-hidden="true">
+    <path class="paper" d="M60 64 L50 12 L94 46 Z" />
+    <path class="paper" d="M140 64 L150 12 L106 46 Z" />
+    <path class="solid" d="M62 54 L56 24 L80 44 Z" />
+    <path class="solid" d="M138 54 L144 24 L120 44 Z" />
+    <path class="paper" d="M60 62 Q76 42 100 41 Q124 42 140 62 L162 96 Q132 104 100 128 Q68 104 38 96 Z" />
+    <path class="ink" d="M42 96 C60 86 80 88 92 102" />
+    <path class="ink" d="M158 96 C140 86 120 88 108 102" />
+    <circle class="dot" cx="80" cy="80" r="6" /><circle class="dot" cx="120" cy="80" r="6" />
+    <path class="solid" d="M94 113 Q100 111 106 113 Q102 121 100 122 Q98 121 94 113 Z" style="--sw:2" />
+  </svg>
+      <span>martin</span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="projects.html">projects</a>
+      <a href="artworks.html">artworks</a>
+      <a href="gallery.html">gallery</a>
+      <a href="tools.html" aria-current="page">tools</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <div class="wrap page-head">
+      <h1 class="page-title lettered">Tools</h1>
+      <svg class="doodle peeker boil" viewBox="40 8 120 92" aria-hidden="true">
+      <path class="paper" d="M60 64 L50 12 L94 46 Z" />
+    <path class="paper" d="M140 64 L150 12 L106 46 Z" />
+    <path class="solid" d="M62 54 L56 24 L80 44 Z" />
+    <path class="solid" d="M138 54 L144 24 L120 44 Z" />
+      <path class="paper" d="M60 62 Q76 42 100 41 Q124 42 140 62 L156 98 L44 98 Z" />
+      <path class="ink" d="M48 92 C60 84 74 86 82 96 M152 92 C140 84 126 86 118 96" style="--sw:3" />
+      <g class="fox-eyes"><circle class="dot pupil" cx="80" cy="80" r="5" /><circle class="dot pupil" cx="120" cy="80" r="5" /></g>
+      <path class="paper" d="M54 99 C54 84 78 84 78 99" />
+      <path class="paper" d="M122 99 C122 84 146 84 146 99" />
+      <path class="ink" d="M62 93 l0 5 M70 93 l0 5 M130 93 l0 5 M138 93 l0 5" style="--sw:3" />
+    </svg>
+    </div>
+
+    <div class="wrap">
+      <p class="page-intro">Skills, libraries and sites I keep reaching for when I build. Most of the skills plug into AI coding agents like Claude Code.</p>
+      <div id="toolList">
+        <noscript><p class="empty">Enable JavaScript to see the tools.</p></noscript>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <svg class="doodle sleepy" viewBox="0 0 220 120" role="img" aria-label="A fox curled up asleep">
+        <path class="paper" d="M50 102 C40 66 76 36 122 36 C168 36 198 66 188 102 Z" />
+        <path class="ink" d="M152 54 C172 66 180 86 172 102" />
+        <path class="paper" d="M42 74 L38 42 L62 66 Z" />
+        <path class="paper" d="M64 66 L76 38 L84 72 Z" />
+        <path class="solid" d="M44 66 L42 52 L54 64 Z" style="--sw:2" />
+        <path class="solid" d="M70 64 L75 50 L79 66 Z" style="--sw:2" />
+        <path class="paper" d="M24 92 C28 74 44 64 62 64 C82 64 96 78 94 98 L26 102 L10 100 Z" />
+        <path class="ink" d="M42 84 Q49 89 56 84" style="--sw:3" />
+        <circle class="dot" cx="11" cy="100" r="3.5" />
+        <path class="solid" d="M188 98 C186 120 100 122 44 116 C28 114 22 108 28 102 C70 108 130 108 172 96 Z" />
+        <path class="paper" d="M44 116 C28 114 22 108 28 102 C36 104 46 105 56 106 L50 110 L58 114 Z" />
+        <path class="ink" d="M92 24 h12 l-12 12 h12 M114 10 h8 l-8 8 h8" style="--sw:3" />
+      </svg>
+      <nav class="socials" aria-label="Elsewhere">
+        <a href="https://instagram.com/foxfoxesfox" target="_blank" rel="noopener noreferrer">instagram ↗</a>
+        <a href="https://open.spotify.com/user/lonestary" target="_blank" rel="noopener noreferrer">spotify ↗</a>
+        <a href="https://steamcommunity.com/id/foxfoxesfox" target="_blank" rel="noopener noreferrer">steam ↗</a>
+        <a href="https://linkedin.com/in/mpjy" target="_blank" rel="noopener noreferrer">linkedin ↗</a>
+        <a href="https://github.com/foxfoxesfox" target="_blank" rel="noopener noreferrer">github ↗</a>
+      </nav>
+      <p class="handle">@foxfoxesfox</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    (async function () {
+      const list = document.getElementById('toolList');
+      const source = url => {
+        const u = new URL(url);
+        const parts = u.pathname.split('/').filter(Boolean);
+        return u.hostname === 'github.com' ? parts.slice(0, 2).join('/') : u.hostname.replace(/^www\./, '');
+      };
+
+      try {
+        const res = await fetch('assets/tools.json');
+        if (!res.ok) throw new Error();
+        const groups = await res.json();
+
+        list.innerHTML = groups.map(group => `
+          <section aria-label="${group.category}">
+            <h2 class="group-title lettered">${group.category}</h2>
+            <ul class="tool-list">
+              ${group.tools.map(tool => `
+                <li>
+                  <a class="tool" href="${tool.url}" target="_blank" rel="noopener noreferrer">
+                    <span class="tool-name">${tool.name}&nbsp;<span class="tool-arrow" aria-hidden="true">↗</span></span>
+                    <span class="tool-src">${source(tool.url)}</span>
+                    <span class="tool-desc">${tool.desc}</span>
+                  </a>
+                </li>
+              `).join('')}
+            </ul>
+          </section>
+        `).join('');
+      } catch {
+        list.innerHTML = '<p class="empty">Could not load the tools list.</p>';
+      }
+    })();
+  </script>
+</body>
+</html>
