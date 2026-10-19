@@ -12,190 +12,214 @@
   <meta property="og:title" content="Projects — Martin" />
   <meta property="og:description" content="Web tools, apps and experiments." />
   <meta property="og:url" content="https://foxesvx.dev/projects" />
-  <meta property="og:image" content="/assets/fox.png?v=2" />
+  <meta property="og:image" content="/assets/fox.png?v=3" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Projects — Martin" />
   <meta name="twitter:description" content="Web tools, apps and experiments." />
-  <meta name="twitter:image" content="/assets/fox.png?v=2" />
+  <meta name="twitter:image" content="/assets/fox.png?v=3" />
 
-  <link rel="icon" type="image/png" href="/assets/fox.png?v=2">
-  <link rel="apple-touch-icon" href="/assets/fox.png?v=2">
+  <link rel="icon" type="image/svg+xml" href="/assets/fox-head.svg?v=3">
+  <link rel="icon" type="image/png" href="/assets/fox.png?v=3">
+  <link rel="apple-touch-icon" href="/assets/fox.png?v=3">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Shantell+Sans:ital,wght,BNCE,INFM@0,300..800,-100..100,0..100&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
+  <!-- Wobble filters: three seeds so drawn lines can "boil" -->
+  <svg class="defs" aria-hidden="true" focusable="false">
+    <filter id="rough-a"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="3" /><feDisplacementMap in="SourceGraphic" scale="3.5" /></filter>
+    <filter id="rough-b"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="11" /><feDisplacementMap in="SourceGraphic" scale="3.5" /></filter>
+    <filter id="rough-c"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="27" /><feDisplacementMap in="SourceGraphic" scale="3.5" /></filter>
+  </svg>
+  <a class="skip" href="#main">skip to content</a>
 
-  <div class="scanlines" aria-hidden="true"></div>
-  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+  <header class="site-header">
+    <a href="index.html" class="brand lettered" aria-label="martin's page, home">
+      <svg class="doodle" viewBox="34 8 132 124" aria-hidden="true">
+    <path class="paper" d="M60 64 L50 12 L94 46 Z" />
+    <path class="paper" d="M140 64 L150 12 L106 46 Z" />
+    <path class="solid" d="M62 54 L56 24 L80 44 Z" />
+    <path class="solid" d="M138 54 L144 24 L120 44 Z" />
+    <path class="paper" d="M60 62 Q76 42 100 41 Q124 42 140 62 L162 96 Q132 104 100 128 Q68 104 38 96 Z" />
+    <path class="ink" d="M42 96 C60 86 80 88 92 102" />
+    <path class="ink" d="M158 96 C140 86 120 88 108 102" />
+    <circle class="dot" cx="80" cy="80" r="6" /><circle class="dot" cx="120" cy="80" r="6" />
+    <path class="solid" d="M94 113 Q100 111 106 113 Q102 121 100 122 Q98 121 94 113 Z" style="--sw:2" />
+  </svg>
+      <span>martin</span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="projects.html" aria-current="page">projects</a>
+      <a href="artworks.html">artworks</a>
+      <a href="gallery.html">gallery</a>
+    </nav>
+  </header>
 
-  <main class="card-wrapper">
+  <main id="main">
+    <div class="wrap page-head">
+      <h1 class="page-title lettered">Projects</h1>
+      <svg class="doodle peeker boil" viewBox="40 8 120 92" aria-hidden="true">
+      <path class="paper" d="M60 64 L50 12 L94 46 Z" />
+    <path class="paper" d="M140 64 L150 12 L106 46 Z" />
+    <path class="solid" d="M62 54 L56 24 L80 44 Z" />
+    <path class="solid" d="M138 54 L144 24 L120 44 Z" />
+      <path class="paper" d="M60 62 Q76 42 100 41 Q124 42 140 62 L156 98 L44 98 Z" />
+      <path class="ink" d="M48 92 C60 84 74 86 82 96 M152 92 C140 84 126 86 118 96" style="--sw:3" />
+      <g class="fox-eyes"><circle class="dot pupil" cx="80" cy="80" r="5" /><circle class="dot pupil" cx="120" cy="80" r="5" /></g>
+      <path class="paper" d="M54 99 C54 84 78 84 78 99" />
+      <path class="paper" d="M122 99 C122 84 146 84 146 99" />
+      <path class="ink" d="M62 93 l0 5 M70 93 l0 5 M130 93 l0 5 M138 93 l0 5" style="--sw:3" />
+    </svg>
+    </div>
 
-    <a href="index.html" class="back-link">martin's page 🦊</a>
+    <div class="wrap">
+      <div class="project-list">
+        <article class="project">
+          <figure class="shot sketch">
+              <svg class="doodle burst" viewBox="0 0 76 76" role="img" aria-label="New">
+                <path class="solid" d="M38.0 2.0 L45.0 11.9 L56.0 6.8 L57.1 18.9 L69.2 20.0 L64.1 31.0 L74.0 38.0 L64.1 45.0 L69.2 56.0 L57.1 57.1 L56.0 69.2 L45.0 64.1 L38.0 74.0 L31.0 64.1 L20.0 69.2 L18.9 57.1 L6.8 56.0 L11.9 45.0 L2.0 38.0 L11.9 31.0 L6.8 20.0 L18.9 18.9 L20.0 6.8 L31.0 11.9 Z" style="--sw:2" />
+                <text x="38" y="45" text-anchor="middle">new!</text>
+              </svg>
+            <img src="assets/projects/cs2024.webp" alt="Ember &amp; Oak homepage: a lined-notebook layout with the headline “Good coffee for long study sessions” beside a taped photo of a latte and laptop" width="800" height="500" loading="lazy" decoding="async" />
+          </figure>
+          <div>
+            <h2 class="project-title lettered">Ember &amp; Oak</h2>
+            <p>
+              A three-page website for a fictional student café in North Spine, NTU, built for a
+              CS2024 HTML assignment. A homepage, a menu, and an &ldquo;our story&rdquo; page, styled
+              like a ruled notebook with taped-on photos and sticky-note specials. Hand-written HTML
+              and plain CSS, no frameworks.
+            </p>
+            <ul class="tags">
+              <li class="tag sketch">HTML</li>
+              <li class="tag sketch">CSS</li>
+              <li class="tag sketch">Web Design</li>
+              <li class="tag sketch">Coursework</li>
+            </ul>
+            <div class="actions">
+              <a href="https://cs2024.foxesvx.dev" target="_blank" rel="noopener noreferrer" class="pill pill-ink sketch">Try it out! ↗</a>
+              <a href="https://github.com/foxfoxesfox/CS2024-html-assignment" target="_blank" rel="noopener noreferrer" class="pill sketch">View on GitHub ↗</a>
+            </div>
+          </div>
+        </article>
 
-    <div class="card">
-      <div class="card-topbar">
-        <nav class="topbar-nav" aria-label="Main">
-          <a href="projects.html" class="topbar-link topbar-link-active" aria-current="page">projects</a>
-          <span class="topbar-sep" aria-hidden="true">·</span>
-          <a href="artworks.html" class="topbar-link">artworks</a>
-          <span class="topbar-sep" aria-hidden="true">·</span>
-          <a href="gallery.html" class="topbar-link">gallery</a>
-        </nav>
-        <div class="topbar-dots" aria-hidden="true">
-          <span class="dot dot-red"></span>
-          <span class="dot dot-yellow"></span>
-          <span class="dot dot-green"></span>
-        </div>
+        <article class="project">
+          <figure class="shot sketch">
+            <img src="assets/projects/ytdlp.webp" alt="YT DLP downloader: a dark panel with a link field, a quality picker and a Download button" width="800" height="500" loading="lazy" decoding="async" />
+          </figure>
+          <div>
+            <h2 class="project-title lettered">YT DLP</h2>
+            <p>
+              A web-based media downloader for saving videos and audio from YouTube and other sites
+              supported by yt-dlp. Pick a format like MP4 up to 1080p, or audio as MP3, M4A, Opus,
+              or WAV, and follow the download with a progress bar and a video preview. Built with
+              Flask, <a href="https://github.com/yt-dlp/yt-dlp" target="_blank" rel="noopener noreferrer">yt-dlp</a>,
+              ffmpeg, and JavaScript.
+            </p>
+            <ul class="tags">
+              <li class="tag sketch">Flask</li>
+              <li class="tag sketch">ffmpeg</li>
+              <li class="tag sketch">yt-dlp</li>
+              <li class="tag sketch">JavaScript</li>
+            </ul>
+            <div class="actions">
+              <a href="https://yt.foxesvx.dev" target="_blank" rel="noopener noreferrer" class="pill pill-ink sketch">Try it out! ↗</a>
+              <a href="https://github.com/foxfoxesfox/ytdlp" target="_blank" rel="noopener noreferrer" class="pill sketch">View on GitHub ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project">
+          <figure class="shot sketch">
+            <img src="assets/projects/qr.webp" alt="QRForge: a settings form on the left and a live QR code preview on the right" width="800" height="500" loading="lazy" decoding="async" />
+          </figure>
+          <div>
+            <h2 class="project-title lettered">QRForge</h2>
+            <p>
+              A live QR code generator for links with print-ready exports, customizable colors,
+              caption text, size controls, and adjustable padding. Built with vanilla HTML, CSS,
+              and JavaScript for instant preview updates and downloadable PNG output.
+            </p>
+            <ul class="tags">
+              <li class="tag sketch">HTML</li>
+              <li class="tag sketch">CSS</li>
+              <li class="tag sketch">JavaScript</li>
+              <li class="tag sketch">QR Code</li>
+            </ul>
+            <div class="actions">
+              <a href="https://qr.foxesvx.dev" target="_blank" rel="noopener noreferrer" class="pill pill-ink sketch">Try it out! ↗</a>
+              <a href="https://github.com/foxfoxesfox/qr-code-generator" target="_blank" rel="noopener noreferrer" class="pill sketch">View on GitHub ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project">
+          <figure class="shot sketch">
+            <img src="assets/projects/osint.webp" alt="OSINT Explorer: a search bar above a sortable table of tools with category and difficulty columns" width="800" height="500" loading="lazy" decoding="async" />
+          </figure>
+          <div>
+            <h2 class="project-title lettered">OSINT Explorer</h2>
+            <p>
+              An auto-updating open-source intelligence directory, powered by the
+              <a href="https://github.com/jivoi/awesome-osint" target="_blank" rel="noopener noreferrer">awesome-osint</a>
+              repository. Built with vanilla HTML, CSS, and JavaScript — features
+              live GitHub API fetching, category filtering, sortable columns.
+            </p>
+            <ul class="tags">
+              <li class="tag sketch">HTML</li>
+              <li class="tag sketch">CSS</li>
+              <li class="tag sketch">JavaScript</li>
+              <li class="tag sketch">GitHub API</li>
+            </ul>
+            <div class="actions">
+              <a href="https://osint.foxesvx.dev" target="_blank" rel="noopener noreferrer" class="pill pill-ink sketch">Try it out! ↗</a>
+              <a href="https://github.com/foxfoxesfox/osint-explorer" target="_blank" rel="noopener noreferrer" class="pill sketch">View on GitHub ↗</a>
+            </div>
+          </div>
+        </article>
       </div>
 
-      <div class="page-content">
-        <h1 class="page-title">Projects<span class="exclaim">.</span></h1>
-        <div class="dashed-divider"></div>
-
-        <article class="featured-project">
-          <div class="featured-badge">New</div>
-          <div class="featured-body">
-            <div class="featured-text">
-              <h2 class="featured-title">Ember &amp; Oak</h2>
-              <p class="featured-desc">
-                A three-page website for a fictional student café in North Spine, NTU, built for a
-                CS2024 HTML assignment. A homepage, a menu, and an &ldquo;our story&rdquo; page, styled
-                like a ruled notebook with taped-on photos and sticky-note specials. Hand-written HTML
-                and plain CSS, no frameworks.
-              </p>
-              <div class="featured-tags">
-                <span class="tag">HTML</span>
-                <span class="tag">CSS</span>
-                <span class="tag">Web Design</span>
-                <span class="tag">Coursework</span>
-              </div>
-              <div class="featured-links">
-                <a href="https://cs2024.foxesvx.dev" target="_blank" rel="noopener noreferrer" class="btn-primary">Try it out! ↗</a>
-                <a href="https://github.com/foxfoxesfox/CS2024-html-assignment" target="_blank" rel="noopener noreferrer" class="btn-ghost">View on GitHub ↗</a>
-              </div>
-            </div>
-            <figure class="featured-preview">
-              <img src="assets/projects/cs2024.webp" alt="Ember &amp; Oak homepage: a lined-notebook layout with the headline “Good coffee for long study sessions” beside a taped photo of a latte and laptop" width="800" height="500" loading="lazy" decoding="async" class="preview-img" />
-            </figure>
-          </div>
-        </article>
-
-        <div class="dashed-divider"></div>
-
-        <article class="featured-project">
-          <div class="featured-body">
-            <div class="featured-text">
-              <h2 class="featured-title">YT DLP</h2>
-              <p class="featured-desc">
-                A web-based media downloader for saving videos and audio from YouTube and other sites
-                supported by yt-dlp. Pick a format like MP4 up to 1080p, or audio as MP3, M4A, Opus,
-                or WAV, and follow the download with a progress bar and a video preview. Built with
-                Flask, <a href="https://github.com/yt-dlp/yt-dlp" target="_blank" rel="noopener noreferrer">yt-dlp</a>,
-                ffmpeg, and JavaScript.
-              </p>
-              <div class="featured-tags">
-                <span class="tag">Flask</span>
-                <span class="tag">ffmpeg</span>
-                <span class="tag">yt-dlp</span>
-                <span class="tag">JavaScript</span>
-              </div>
-              <div class="featured-links">
-                <a href="https://yt.foxesvx.dev" target="_blank" rel="noopener noreferrer" class="btn-primary">Try it out! ↗</a>
-                <a href="https://github.com/foxfoxesfox/ytdlp" target="_blank" rel="noopener noreferrer" class="btn-ghost">View on GitHub</a>
-              </div>
-            </div>
-            <figure class="featured-preview">
-              <img src="assets/projects/ytdlp.webp" alt="YT DLP downloader: a dark panel with a link field, a quality picker and a Download button" width="800" height="500" loading="lazy" decoding="async" class="preview-img" />
-            </figure>
-          </div>
-        </article>
-
-        <div class="dashed-divider"></div>
-
-        <article class="featured-project">
-          <div class="featured-body">
-            <div class="featured-text">
-              <h2 class="featured-title">QRForge</h2>
-              <p class="featured-desc">
-                A live QR code generator for links with print-ready exports, customizable colors,
-                caption text, size controls, and adjustable padding. Built with vanilla HTML, CSS,
-                and JavaScript for instant preview updates and downloadable PNG output.
-              </p>
-              <div class="featured-tags">
-                <span class="tag">HTML</span>
-                <span class="tag">CSS</span>
-                <span class="tag">JavaScript</span>
-                <span class="tag">QR Code</span>
-              </div>
-              <div class="featured-links">
-                <a href="https://qr.foxesvx.dev" target="_blank" rel="noopener noreferrer" class="btn-primary">Try it out! ↗</a>
-                <a href="https://github.com/foxfoxesfox/qr-code-generator" target="_blank" rel="noopener noreferrer" class="btn-ghost">View on GitHub</a>
-              </div>
-            </div>
-            <figure class="featured-preview">
-              <img src="assets/projects/qr.webp" alt="QRForge: a settings form on the left and a live QR code preview on the right" width="800" height="500" loading="lazy" decoding="async" class="preview-img" />
-            </figure>
-          </div>
-        </article>
-
-        <div class="dashed-divider"></div>
-
-        <article class="featured-project">
-          <div class="featured-body">
-            <div class="featured-text">
-              <h2 class="featured-title">OSINT Explorer</h2>
-              <p class="featured-desc">
-                An auto-updating open-source intelligence directory, powered by the
-                <a href="https://github.com/jivoi/awesome-osint" target="_blank" rel="noopener noreferrer">awesome-osint</a>
-                repository. Built with vanilla HTML, CSS, and JavaScript — features
-                live GitHub API fetching, category filtering, sortable columns.
-              </p>
-              <div class="featured-tags">
-                <span class="tag">HTML</span>
-                <span class="tag">CSS</span>
-                <span class="tag">JavaScript</span>
-                <span class="tag">GitHub API</span>
-              </div>
-              <div class="featured-links">
-                <a href="https://osint.foxesvx.dev" target="_blank" rel="noopener noreferrer" class="btn-primary">Try it out! ↗</a>
-                <a href="https://github.com/foxfoxesfox/osint-explorer" target="_blank" rel="noopener noreferrer" class="btn-ghost">View on GitHub</a>
-              </div>
-            </div>
-            <figure class="featured-preview">
-              <img src="assets/projects/osint.webp" alt="OSINT Explorer: a search bar above a sortable table of tools with category and difficulty columns" width="800" height="500" loading="lazy" decoding="async" class="preview-img" />
-            </figure>
-          </div>
-        </article>
-
-        <div class="dashed-divider"></div>
-
-        <div class="github-section">
-          <div class="section-label">More on GitHub</div>
-          <a href="https://github.com/foxfoxesfox" target="_blank" rel="noopener noreferrer" class="github-card">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
-            <div>
-              <div class="github-card-title">github.com/foxfoxesfox</div>
-              <div class="github-card-sub">View all repositories and contributions</div>
-            </div>
-            <span class="github-arrow" aria-hidden="true">↗</span>
-          </a>
+      <a href="https://github.com/foxfoxesfox" target="_blank" rel="noopener noreferrer" class="more sketch">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+        <div>
+          <h2 class="more-title lettered">More on GitHub</h2>
+          <div class="more-sub">github.com/foxfoxesfox · View all repositories and contributions</div>
         </div>
-
-      </div>
-
-      <p class="icon-credit">
-        icon:
-        <a href="https://www.flaticon.com/free-icons/fox" title="fox icons" target="_blank" rel="noopener noreferrer">
-          amonrat rungreangfangsai / Flaticon
-        </a>
-      </p>
-
-      <div class="card-footer">@foxfoxesfox</div>
+        <span class="more-arrow" aria-hidden="true">↗</span>
+      </a>
     </div>
   </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <svg class="doodle sleepy" viewBox="0 0 220 120" role="img" aria-label="A fox curled up asleep">
+        <path class="paper" d="M50 102 C40 66 76 36 122 36 C168 36 198 66 188 102 Z" />
+        <path class="ink" d="M152 54 C172 66 180 86 172 102" />
+        <path class="paper" d="M42 74 L38 42 L62 66 Z" />
+        <path class="paper" d="M64 66 L76 38 L84 72 Z" />
+        <path class="solid" d="M44 66 L42 52 L54 64 Z" style="--sw:2" />
+        <path class="solid" d="M70 64 L75 50 L79 66 Z" style="--sw:2" />
+        <path class="paper" d="M24 92 C28 74 44 64 62 64 C82 64 96 78 94 98 L26 102 L10 100 Z" />
+        <path class="ink" d="M42 84 Q49 89 56 84" style="--sw:3" />
+        <circle class="dot" cx="11" cy="100" r="3.5" />
+        <path class="solid" d="M188 98 C186 120 100 122 44 116 C28 114 22 108 28 102 C70 108 130 108 172 96 Z" />
+        <path class="paper" d="M44 116 C28 114 22 108 28 102 C36 104 46 105 56 106 L50 110 L58 114 Z" />
+        <path class="ink" d="M92 24 h12 l-12 12 h12 M114 10 h8 l-8 8 h8" style="--sw:3" />
+      </svg>
+      <nav class="socials" aria-label="Elsewhere">
+        <a href="https://instagram.com/foxfoxesfox" target="_blank" rel="noopener noreferrer">instagram ↗</a>
+        <a href="https://open.spotify.com/user/lonestary" target="_blank" rel="noopener noreferrer">spotify ↗</a>
+        <a href="https://steamcommunity.com/id/foxfoxesfox" target="_blank" rel="noopener noreferrer">steam ↗</a>
+        <a href="https://linkedin.com/in/mpjy" target="_blank" rel="noopener noreferrer">linkedin ↗</a>
+        <a href="https://github.com/foxfoxesfox" target="_blank" rel="noopener noreferrer">github ↗</a>
+      </nav>
+      <p class="handle">@foxfoxesfox</p>
+    </div>
+  </footer>
 
   <script src="script.js"></script>
 </body>

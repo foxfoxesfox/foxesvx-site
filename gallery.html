@@ -12,80 +12,118 @@
   <meta property="og:title" content="Gallery — Martin" />
   <meta property="og:description" content="Photographed moments." />
   <meta property="og:url" content="https://foxesvx.dev/gallery" />
-  <meta property="og:image" content="/assets/fox.png?v=2" />
+  <meta property="og:image" content="/assets/fox.png?v=3" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Gallery — Martin" />
   <meta name="twitter:description" content="Photographed moments." />
-  <meta name="twitter:image" content="/assets/fox.png?v=2" />
+  <meta name="twitter:image" content="/assets/fox.png?v=3" />
 
-  <link rel="icon" type="image/png" href="/assets/fox.png?v=2">
-  <link rel="apple-touch-icon" href="/assets/fox.png?v=2">
+  <link rel="icon" type="image/svg+xml" href="/assets/fox-head.svg?v=3">
+  <link rel="icon" type="image/png" href="/assets/fox.png?v=3">
+  <link rel="apple-touch-icon" href="/assets/fox.png?v=3">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Shantell+Sans:ital,wght,BNCE,INFM@0,300..800,-100..100,0..100&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-
-  <div class="scanlines" aria-hidden="true"></div>
-  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
-
+  <!-- Wobble filters: three seeds so drawn lines can "boil" -->
+  <svg class="defs" aria-hidden="true" focusable="false">
+    <filter id="rough-a"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="3" /><feDisplacementMap in="SourceGraphic" scale="3.5" /></filter>
+    <filter id="rough-b"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="11" /><feDisplacementMap in="SourceGraphic" scale="3.5" /></filter>
+    <filter id="rough-c"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="27" /><feDisplacementMap in="SourceGraphic" scale="3.5" /></filter>
+  </svg>
   <!-- Lightbox: clicking anywhere (including the close button) closes it -->
   <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
-    <button class="lightbox-close" aria-label="Close">✕</button>
-    <img id="lightboxImg" src="" alt="" class="lightbox-img" />
+    <button class="lightbox-close sketch" aria-label="Close">
+      <svg class="doodle" viewBox="0 0 24 24" aria-hidden="true"><path class="ink" d="M4 4 L20 20 M20 4 L4 20" style="--sw:2.5" /></svg>
+    </button>
+    <img id="lightboxImg" alt="" class="lightbox-img" />
+    
   </div>
+  <a class="skip" href="#main">skip to content</a>
 
-  <main class="card-wrapper">
+  <header class="site-header">
+    <a href="index.html" class="brand lettered" aria-label="martin's page, home">
+      <svg class="doodle" viewBox="34 8 132 124" aria-hidden="true">
+    <path class="paper" d="M60 64 L50 12 L94 46 Z" />
+    <path class="paper" d="M140 64 L150 12 L106 46 Z" />
+    <path class="solid" d="M62 54 L56 24 L80 44 Z" />
+    <path class="solid" d="M138 54 L144 24 L120 44 Z" />
+    <path class="paper" d="M60 62 Q76 42 100 41 Q124 42 140 62 L162 96 Q132 104 100 128 Q68 104 38 96 Z" />
+    <path class="ink" d="M42 96 C60 86 80 88 92 102" />
+    <path class="ink" d="M158 96 C140 86 120 88 108 102" />
+    <circle class="dot" cx="80" cy="80" r="6" /><circle class="dot" cx="120" cy="80" r="6" />
+    <path class="solid" d="M94 113 Q100 111 106 113 Q102 121 100 122 Q98 121 94 113 Z" style="--sw:2" />
+  </svg>
+      <span>martin</span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="projects.html">projects</a>
+      <a href="artworks.html">artworks</a>
+      <a href="gallery.html" aria-current="page">gallery</a>
+    </nav>
+  </header>
 
-    <a href="index.html" class="back-link">martin's page 🦊</a>
-
-    <div class="card">
-      <div class="card-topbar">
-        <nav class="topbar-nav" aria-label="Main">
-          <a href="projects.html" class="topbar-link">projects</a>
-          <span class="topbar-sep" aria-hidden="true">·</span>
-          <a href="artworks.html" class="topbar-link">artworks</a>
-          <span class="topbar-sep" aria-hidden="true">·</span>
-          <a href="gallery.html" class="topbar-link topbar-link-active" aria-current="page">gallery</a>
-        </nav>
-        <div class="topbar-dots" aria-hidden="true">
-          <span class="dot dot-red"></span>
-          <span class="dot dot-yellow"></span>
-          <span class="dot dot-green"></span>
-        </div>
-      </div>
-
-      <div class="page-content">
-        <h1 class="page-title">Gallery<span class="exclaim">.</span></h1>
-        <div class="dashed-divider"></div>
-
-        <div id="photoCount" class="gallery-count" aria-live="polite"></div>
-
-        <div id="photoGrid" class="art-grid gallery-grid">
-          <div class="art-card skeleton-card" aria-hidden="true"></div>
-          <div class="art-card skeleton-card" aria-hidden="true"></div>
-          <div class="art-card skeleton-card" aria-hidden="true"></div>
-          <div class="art-card skeleton-card" aria-hidden="true"></div>
-          <div class="art-card skeleton-card" aria-hidden="true"></div>
-          <div class="art-card skeleton-card" aria-hidden="true"></div>
-        </div>
-
-        <noscript><p class="load-error">Enable JavaScript to view the gallery.</p></noscript>
-      </div>
-
-      <p class="icon-credit">
-        icon:
-        <a href="https://www.flaticon.com/free-icons/fox" title="fox icons" target="_blank" rel="noopener noreferrer">
-          amonrat rungreangfangsai / Flaticon
-        </a>
-      </p>
-
-      <div class="card-footer">@foxfoxesfox</div>
+  <main id="main">
+    <div class="wrap page-head">
+      <h1 class="page-title lettered">Gallery</h1>
+      <svg class="doodle peeker boil" viewBox="40 8 120 92" aria-hidden="true">
+      <path class="paper" d="M60 64 L50 12 L94 46 Z" />
+    <path class="paper" d="M140 64 L150 12 L106 46 Z" />
+    <path class="solid" d="M62 54 L56 24 L80 44 Z" />
+    <path class="solid" d="M138 54 L144 24 L120 44 Z" />
+      <path class="paper" d="M60 62 Q76 42 100 41 Q124 42 140 62 L156 98 L44 98 Z" />
+      <path class="ink" d="M48 92 C60 84 74 86 82 96 M152 92 C140 84 126 86 118 96" style="--sw:3" />
+      <g class="fox-eyes"><circle class="dot pupil" cx="80" cy="80" r="5" /><circle class="dot pupil" cx="120" cy="80" r="5" /></g>
+      <path class="paper" d="M54 99 C54 84 78 84 78 99" />
+      <path class="paper" d="M122 99 C122 84 146 84 146 99" />
+      <path class="ink" d="M62 93 l0 5 M70 93 l0 5 M130 93 l0 5 M138 93 l0 5" style="--sw:3" />
+    </svg>
     </div>
+
+    <div class="wrap"><p id="photoCount" class="count" aria-live="polite"></p></div>
+
+    <div id="photoGrid" class="tile-grid">
+      <div class="tile is-skeleton" aria-hidden="true"></div>
+      <div class="tile is-skeleton" aria-hidden="true"></div>
+      <div class="tile is-skeleton" aria-hidden="true"></div>
+      <div class="tile is-skeleton" aria-hidden="true"></div>
+      <div class="tile is-skeleton" aria-hidden="true"></div>
+      <div class="tile is-skeleton" aria-hidden="true"></div>
+    </div>
+
+    <noscript><p class="wrap empty">Enable JavaScript to view the gallery.</p></noscript>
   </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <svg class="doodle sleepy" viewBox="0 0 220 120" role="img" aria-label="A fox curled up asleep">
+        <path class="paper" d="M50 102 C40 66 76 36 122 36 C168 36 198 66 188 102 Z" />
+        <path class="ink" d="M152 54 C172 66 180 86 172 102" />
+        <path class="paper" d="M42 74 L38 42 L62 66 Z" />
+        <path class="paper" d="M64 66 L76 38 L84 72 Z" />
+        <path class="solid" d="M44 66 L42 52 L54 64 Z" style="--sw:2" />
+        <path class="solid" d="M70 64 L75 50 L79 66 Z" style="--sw:2" />
+        <path class="paper" d="M24 92 C28 74 44 64 62 64 C82 64 96 78 94 98 L26 102 L10 100 Z" />
+        <path class="ink" d="M42 84 Q49 89 56 84" style="--sw:3" />
+        <circle class="dot" cx="11" cy="100" r="3.5" />
+        <path class="solid" d="M188 98 C186 120 100 122 44 116 C28 114 22 108 28 102 C70 108 130 108 172 96 Z" />
+        <path class="paper" d="M44 116 C28 114 22 108 28 102 C36 104 46 105 56 106 L50 110 L58 114 Z" />
+        <path class="ink" d="M92 24 h12 l-12 12 h12 M114 10 h8 l-8 8 h8" style="--sw:3" />
+      </svg>
+      <nav class="socials" aria-label="Elsewhere">
+        <a href="https://instagram.com/foxfoxesfox" target="_blank" rel="noopener noreferrer">instagram ↗</a>
+        <a href="https://open.spotify.com/user/lonestary" target="_blank" rel="noopener noreferrer">spotify ↗</a>
+        <a href="https://steamcommunity.com/id/foxfoxesfox" target="_blank" rel="noopener noreferrer">steam ↗</a>
+        <a href="https://linkedin.com/in/mpjy" target="_blank" rel="noopener noreferrer">linkedin ↗</a>
+        <a href="https://github.com/foxfoxesfox" target="_blank" rel="noopener noreferrer">github ↗</a>
+      </nav>
+      <p class="handle">@foxfoxesfox</p>
+    </div>
+  </footer>
 
   <script src="script.js"></script>
   <script>
@@ -102,7 +140,11 @@
         if (!res.ok) throw new Error();
         photos = await res.json();
       } catch {
-        grid.innerHTML = '<p class="load-error load-error-wide">No photos found. Add images to <code>assets/photos/</code> and update <code>photos.json</code>.</p>';
+        photos = [];
+      }
+
+      if (!photos.length) {
+        grid.outerHTML = '<p class="wrap empty">No photos yet. The fox is still out scouting.</p>';
         return;
       }
 
@@ -112,9 +154,9 @@
       photos.forEach((photo, i) => {
         const card = document.createElement('button');
         card.type = 'button';
-        card.className = 'art-card gallery-card';
+        card.className = 'tile';
         card.setAttribute('aria-label', `View photo ${i + 1}`);
-        card.innerHTML = `<img src="${FOLDER}${photo.file}" alt="${photo.alt || ''}" loading="lazy" class="art-img gallery-img" />`;
+        card.innerHTML = `<img src="${FOLDER}${photo.file}" alt="${photo.alt || ''}" loading="lazy" decoding="async" />`;
         card.addEventListener('click', () => lightbox.open(photos, i));
         grid.appendChild(card);
       });
@@ -122,7 +164,5 @@
 
     loadGallery();
   </script>
-
-
 </body>
 </html>

@@ -1,64 +1,62 @@
-// ── Custom cursor ──
-const dot = document.getElementById('cursorDot');
-if (dot) {
-  if (window.matchMedia('(pointer: fine)').matches) {
-    document.addEventListener('mousemove', e => {
-      dot.style.left = e.clientX + 'px';
-      dot.style.top  = e.clientY + 'px';
-      dot.style.opacity = 1;
-    });
-  } else {
-    dot.style.display = 'none';
-  }
-}
-
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-// ── Glitch name effect on hover ──
-const nameEl = document.querySelector('.name');
-if (nameEl && !reduceMotion) {
-  const original = nameEl.textContent;
-  const chars = '!@#$%<>?/\\|[]{}';
-  let glitchInterval = null;
+// ── Fox eyes follow the pointer ──
+const pupils = [...document.querySelectorAll('.pupil')];
+if (pupils.length && !reduceMotion && window.matchMedia('(pointer: fine)').matches) {
+  const REACH = 3; // how far a pupil may travel, in drawing units
+  let pending = null;
 
-  nameEl.addEventListener('mouseenter', () => {
-    let iterations = 0;
-    clearInterval(glitchInterval);
-    glitchInterval = setInterval(() => {
-      nameEl.textContent = original
-        .split('')
-        .map((char, i) => (char === ' ' || i < iterations)
-          ? char
-          : chars[Math.floor(Math.random() * chars.length)])
-        .join('');
-      if (iterations >= original.length) {
-        clearInterval(glitchInterval);
-        nameEl.textContent = original;
-      }
-      iterations += 0.5;
-    }, 40);
+  document.addEventListener('pointermove', e => {
+    if (pending) return;
+    pending = requestAnimationFrame(() => {
+      pending = null;
+      pupils.forEach(p => {
+        const svg = p.ownerSVGElement;
+        const box = svg.getBoundingClientRect();
+        const vb = svg.viewBox.baseVal;
+        const scale = box.width / vb.width;
+        const cx = box.left + (p.cx.baseVal.value - vb.x) * scale;
+        const cy = box.top + (p.cy.baseVal.value - vb.y) * scale;
+        const dx = e.clientX - cx, dy = e.clientY - cy;
+        const dist = Math.hypot(dx, dy) || 1;
+        const pull = Math.min(REACH, dist / 60);
+        p.style.transform = `translate(${(dx / dist) * pull}px, ${(dy / dist) * pull}px)`;
+      });
+    });
   });
+}
+
+// ── Fox blinks now and then ──
+const eyes = document.querySelectorAll('.fox-eyes');
+if (eyes.length && !reduceMotion) {
+  (function blink() {
+    setTimeout(() => {
+      eyes.forEach(g => g.classList.add('is-blinking'));
+      setTimeout(() => {
+        eyes.forEach(g => g.classList.remove('is-blinking'));
+        blink();
+      }, 140);
+    }, 2500 + Math.random() * 3500);
+  })();
 }
 
 // ── Typing cycle on "Currently" ──
 const currentTextEl = document.getElementById('currently-text');
-const currentIconEl = document.getElementById('currently-icon');
 
-if (currentTextEl && currentIconEl && !reduceMotion) {
+if (currentTextEl && !reduceMotion) {
   const statuses = [
-    { icon: '🕺', text: 'Learning to dance better' },
-    { icon: '🔨', text: 'Looking to build more personal projects' },
-    { icon: '💻', text: 'Vibe coding my own iOS application' }
+    'Learning to dance better',
+    'Looking to build more personal projects',
+    'Vibe coding my own iOS application'
   ];
-  let idx = 0;
+  let idx = -1;
 
-  function typeText(status, cb) {
-    currentIconEl.textContent = status.icon;
+  function typeText(text, cb) {
     currentTextEl.textContent = '';
     let i = 0;
     const t = setInterval(() => {
-      currentTextEl.textContent += status.text[i++];
-      if (i >= status.text.length) {
+      currentTextEl.textContent += text[i++];
+      if (i >= text.length) {
         clearInterval(t);
         setTimeout(cb, 2500);
       }

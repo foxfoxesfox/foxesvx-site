@@ -12,189 +12,189 @@
   <meta property="og:title" content="Martin's page 🦊" />
   <meta property="og:description" content="Personal Projects&nbsp;|&nbsp;Artworks&nbsp;|&nbsp;Photography" />
   <meta property="og:url" content="https://foxesvx.dev/" />
-  <meta property="og:image" content="/assets/fox.png?v=2" />
+  <meta property="og:image" content="/assets/fox.png?v=3" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Martin's page 🦊" />
   <meta name="twitter:description" content="Personal Projects&nbsp;|&nbsp;Artworks&nbsp;|&nbsp;Photography" />
-  <meta name="twitter:image" content="/assets/fox.png?v=2" />
+  <meta name="twitter:image" content="/assets/fox.png?v=3" />
 
-  <link rel="icon" type="image/png" href="/assets/fox.png?v=2">
-  <link rel="apple-touch-icon" href="/assets/fox.png?v=2">
+  <link rel="icon" type="image/svg+xml" href="/assets/fox-head.svg?v=3">
+  <link rel="icon" type="image/png" href="/assets/fox.png?v=3">
+  <link rel="apple-touch-icon" href="/assets/fox.png?v=3">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Shantell+Sans:ital,wght,BNCE,INFM@0,300..800,-100..100,0..100&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
+  <!-- Wobble filters: three seeds so drawn lines can "boil" -->
+  <svg class="defs" aria-hidden="true" focusable="false">
+    <filter id="rough-a"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="3" /><feDisplacementMap in="SourceGraphic" scale="3.5" /></filter>
+    <filter id="rough-b"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="11" /><feDisplacementMap in="SourceGraphic" scale="3.5" /></filter>
+    <filter id="rough-c"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="27" /><feDisplacementMap in="SourceGraphic" scale="3.5" /></filter>
+  </svg>
+  <a class="skip" href="#main">skip to content</a>
 
-  <div class="scanlines" aria-hidden="true"></div>
-  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+  <header class="site-header">
+    <a href="index.html" class="brand lettered" aria-label="martin's page, home">
+      <svg class="doodle" viewBox="34 8 132 124" aria-hidden="true">
+    <path class="paper" d="M60 64 L50 12 L94 46 Z" />
+    <path class="paper" d="M140 64 L150 12 L106 46 Z" />
+    <path class="solid" d="M62 54 L56 24 L80 44 Z" />
+    <path class="solid" d="M138 54 L144 24 L120 44 Z" />
+    <path class="paper" d="M60 62 Q76 42 100 41 Q124 42 140 62 L162 96 Q132 104 100 128 Q68 104 38 96 Z" />
+    <path class="ink" d="M42 96 C60 86 80 88 92 102" />
+    <path class="ink" d="M158 96 C140 86 120 88 108 102" />
+    <circle class="dot" cx="80" cy="80" r="6" /><circle class="dot" cx="120" cy="80" r="6" />
+    <path class="solid" d="M94 113 Q100 111 106 113 Q102 121 100 122 Q98 121 94 113 Z" style="--sw:2" />
+  </svg>
+      <span>martin</span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="projects.html">projects</a>
+      <a href="artworks.html">artworks</a>
+      <a href="gallery.html">gallery</a>
+    </nav>
+  </header>
 
-  <main class="card-wrapper">
+  <main id="main">
 
-    <a href="index.html" class="back-link">martin's page 🦊</a>
-
-    <div class="card">
-
-      <!-- Top bar -->
-      <div class="card-topbar">
-        <nav class="topbar-nav" aria-label="Main">
-          <a href="projects.html" class="topbar-link">projects</a>
-          <span class="topbar-sep" aria-hidden="true">·</span>
-          <a href="artworks.html" class="topbar-link">artworks</a>
-          <span class="topbar-sep" aria-hidden="true">·</span>
-          <a href="gallery.html" class="topbar-link">gallery</a>
-        </nav>
-        <div class="topbar-dots" aria-hidden="true">
-          <span class="dot dot-red"></span>
-          <span class="dot dot-yellow"></span>
-          <span class="dot dot-green"></span>
-        </div>
+    <section class="hero">
+      <div class="hero-mark">
+        <svg class="doodle hero-fox boil" viewBox="34 8 166 200" aria-hidden="true">
+      <g class="fox-tail">
+        <path class="solid" d="M136 200 C178 208 200 182 194 148 C190 124 166 116 156 132 C170 140 177 158 170 172 C163 186 150 190 136 188 Z" />
+        <path class="paper" d="M156 132 C160 120 180 116 190 130 C193 136 194 142 194 148 L187 141 L183 150 L177 140 L171 148 L167 137 L160 141 Z" />
+      </g>
+      <path class="paper" d="M74 110 C60 136 52 168 56 194 Q58 202 68 202 L140 202 C152 202 157 196 155 186 C153 168 146 156 138 148 C133 134 130 122 126 110 Z" />
+      <path class="ink" d="M130 150 C146 158 152 178 146 200" />
+      <path class="ink" d="M86 132 l7 8 l7 -8 l7 8 l7 -8" />
+      <path class="paper" d="M80 150 L80 198 Q89 205 98 198 L98 150" />
+      <path class="solid" d="M80 178 Q89 174 98 178 L98 198 Q89 205 80 198 Z" />
+      <path class="paper" d="M102 150 L102 198 Q111 205 120 198 L120 150" />
+      <path class="solid" d="M102 178 Q111 174 120 178 L120 198 Q111 205 102 198 Z" />
+      <path class="paper" d="M60 64 L50 12 L94 46 Z" />
+    <path class="paper" d="M140 64 L150 12 L106 46 Z" />
+    <path class="solid" d="M62 54 L56 24 L80 44 Z" />
+    <path class="solid" d="M138 54 L144 24 L120 44 Z" />
+      <path class="paper" d="M60 62 Q76 42 100 41 Q124 42 140 62 L162 96 Q132 104 100 128 Q68 104 38 96 Z" />
+    <path class="ink" d="M42 96 C60 86 80 88 92 102" />
+    <path class="ink" d="M158 96 C140 86 120 88 108 102" />
+      <g class="fox-eyes"><circle class="dot pupil" cx="80" cy="80" r="5" /><circle class="dot pupil" cx="120" cy="80" r="5" /></g>
+      <path class="solid" d="M94 113 Q100 111 106 113 Q102 121 100 122 Q98 121 94 113 Z" style="--sw:2" />
+    </svg>
+        <h1 class="hero-name lettered">Martin<svg class="scribble" viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path d="M6 12 C60 4 120 16 170 9 S260 6 294 11" /></svg></h1>
       </div>
+      <p class="hero-meta"><span>Singapore</span><span>INFJ-T</span><span>Taurus ♉&#xFE0E;</span></p>
+      <p class="currently" aria-live="off">currently: <b id="currently-text">Year 3 @ NTU</b><span class="caret" aria-hidden="true"></span></p>
+      <a href="projects.html" class="pill pill-ink sketch">see my projects →</a>
+      <a href="#about" class="scroll-cue boil" aria-label="Scroll to about me">
+        <svg class="doodle" viewBox="0 0 30 70" aria-hidden="true"><path class="ink" d="M15 2 C4 14 26 22 15 34 C6 44 22 50 15 64 M6 54 L15 66 L24 54" /></svg>
+      </a>
+    </section>
 
-      <div class="dashed-divider"></div>
-
-      <div class="card-body">
-
-        <!-- LEFT -->
-        <div class="col-left">
-          <div class="name-block">
-            <h1 class="name">Martin</h1>
-            <div class="meta-pills">
-              <span>Singapore</span><span class="diamond" aria-hidden="true">◇</span>
-              <span>INFJ-T</span><span class="diamond" aria-hidden="true">◇</span>
-              <span>Taurus ♉</span><span class="diamond" aria-hidden="true">◇</span>
-            </div>
-          </div>
-
-          <div class="info-box">
-            <div class="info-box-label">Areas of Study</div>
-            <div class="info-box-content">
-              <ul class="study-list">
-                <li>Information Engineering &amp; Media</li>
-                <li>Information Security</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="info-box">
-            <div class="info-box-label">Likes</div>
-            <div class="info-box-content likes-grid">
-              <span class="tag">K-pop</span>
-              <span class="tag">Rock</span>
-              <span class="tag">EDM</span>
-              <span class="tag">Cafe Hopping</span>
-              <span class="tag">Food</span>
-              <span class="tag">Liminal Spaces Aesthetic</span>
-              <span class="tag">Monochrome Aesthetic</span>
-            </div>
-          </div>
-
-          <!-- TODO: replace picsum placeholders with your own images -->
-          <div class="manga-strip" aria-hidden="true">
-            <div class="manga-panel" style="background-image:url('https://picsum.photos/seed/m1/150/100')"></div>
-            <div class="manga-panel" style="background-image:url('https://picsum.photos/seed/m2/150/100')"></div>
-            <div class="manga-panel" style="background-image:url('https://picsum.photos/seed/m3/150/100')"></div>
-            <div class="manga-overlay"></div>
-          </div>
-
-          <!-- Pong (AI vs AI) -->
-          <div class="dino-box">
-            <canvas id="pongCanvas" width="380" height="80" role="img" aria-label="Decorative pong game, computer versus computer"></canvas>
-          </div>
+    <section class="wrap section" id="about" aria-label="About me">
+      <div class="about-grid">
+        <div>
+          <h2 class="h3 lettered">Areas of Study</h2>
+          <ul class="study">
+            <li>Information Engineering &amp; Media</li>
+            <li>Information Security</li>
+          </ul>
         </div>
 
-        <!-- RIGHT -->
-        <div class="col-right">
-          <!-- TODO: replace with your own photo -->
-          <div class="profile-img-frame">
-            <img src="https://picsum.photos/seed/portrait/400/500" alt="Portrait of Martin" width="400" height="500" loading="lazy" class="profile-img" />
-            <div class="glitch-layer glitch-r" aria-hidden="true"></div>
-            <div class="glitch-layer glitch-b" aria-hidden="true"></div>
-            <div class="speed-lines" aria-hidden="true"></div>
-          </div>
-
-          <div class="info-box">
-            <div class="info-box-label">Hobbies</div>
-            <div class="info-box-content likes-grid">
-              <span class="tag">Dance</span>
-              <span class="tag">Photography</span>
-              <span class="tag">Gaming</span>
-            </div>
-          </div>
-
-          <div class="info-box">
-            <div class="info-box-label">Currently</div>
-            <div class="info-box-content currently-list">
-              <div class="currently-item">
-                <span id="currently-icon" aria-hidden="true">📚</span>
-                <span id="currently-text">Year 3 @ NTU</span>
-              </div>
-            </div>
-          </div>
+        <div>
+          <h2 class="h3 lettered">Likes</h2>
+          <ul class="tags">
+            <li class="tag sketch">K-pop</li>
+            <li class="tag sketch">Rock</li>
+            <li class="tag sketch">EDM</li>
+            <li class="tag sketch">Cafe Hopping</li>
+            <li class="tag sketch">Food</li>
+            <li class="tag sketch">Liminal Spaces Aesthetic</li>
+            <li class="tag sketch">Monochrome Aesthetic</li>
+          </ul>
         </div>
 
-      </div>
-
-      <div class="info-box commitments-full">
-        <div class="info-box-label">Commitments &amp; CCA</div>
-        <div id="commitmentsGrid" class="info-box-content commitments-grid">
-          <noscript>Enable JavaScript to see my commitments.</noscript>
+        <div>
+          <h2 class="h3 lettered">Hobbies</h2>
+          <ul class="tags">
+            <li class="tag sketch">Dance</li>
+            <li class="tag sketch">Photography</li>
+            <li class="tag sketch">Gaming</li>
+          </ul>
         </div>
+
+        <figure>
+          <div class="pong sketch">
+            <canvas id="pongCanvas" width="380" height="96" role="img" aria-label="Decorative pong game, computer versus computer"></canvas>
+          </div>
+          <figcaption class="caption">pong, computer vs computer. nobody wins.</figcaption>
+        </figure>
       </div>
+    </section>
 
-      <!-- Social -->
-      <div class="social-bar">
-        <a href="https://instagram.com/foxfoxesfox" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
-        </a>
-        <a href="https://open.spotify.com/user/lonestary" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Spotify">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M8 15s1.5-1 4-1 4 1 4 1M7 12s2-1.5 5-1.5 5 1.5 5 1.5M6.5 9s2.5-2 5.5-2 5.5 2 5.5 2"/></svg>
-        </a>
-        <a href="https://steamcommunity.com/id/foxfoxesfox" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Steam">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 2.91 19.56l-2.8-1.14a2.5 2.5 0 0 1-4.54-.94L5.05 17.1A10 10 0 0 0 12 2zm0 1.5A8.5 8.5 0 1 1 3.5 12 8.51 8.51 0 0 1 12 3.5z"/></svg>
-        </a>
-        <a href="https://linkedin.com/in/mpjy" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7H10v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-        </a>
-        <a href="https://github.com/foxfoxesfox" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
-        </a>
-      </div>
+    <section class="wrap section" aria-labelledby="commitments-title">
+      <h2 id="commitments-title" class="section-title lettered">Commitments &amp; CCA</h2>
+      <ol id="commitmentsGrid" class="timeline">
+        <li><noscript>Enable JavaScript to see my commitments.</noscript></li>
+      </ol>
+    </section>
 
-      <div class="dashed-divider"></div>
-
-      <p class="icon-credit">
-        icon:
-        <a href="https://www.flaticon.com/free-icons/fox" title="fox icons" target="_blank" rel="noopener noreferrer">
-          amonrat rungreangfangsai / Flaticon
-        </a>
-      </p>
-
-      <div class="card-footer">@foxfoxesfox</div>
-
-    </div>
   </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <svg class="doodle sleepy" viewBox="0 0 220 120" role="img" aria-label="A fox curled up asleep">
+        <path class="paper" d="M50 102 C40 66 76 36 122 36 C168 36 198 66 188 102 Z" />
+        <path class="ink" d="M152 54 C172 66 180 86 172 102" />
+        <path class="paper" d="M42 74 L38 42 L62 66 Z" />
+        <path class="paper" d="M64 66 L76 38 L84 72 Z" />
+        <path class="solid" d="M44 66 L42 52 L54 64 Z" style="--sw:2" />
+        <path class="solid" d="M70 64 L75 50 L79 66 Z" style="--sw:2" />
+        <path class="paper" d="M24 92 C28 74 44 64 62 64 C82 64 96 78 94 98 L26 102 L10 100 Z" />
+        <path class="ink" d="M42 84 Q49 89 56 84" style="--sw:3" />
+        <circle class="dot" cx="11" cy="100" r="3.5" />
+        <path class="solid" d="M188 98 C186 120 100 122 44 116 C28 114 22 108 28 102 C70 108 130 108 172 96 Z" />
+        <path class="paper" d="M44 116 C28 114 22 108 28 102 C36 104 46 105 56 106 L50 110 L58 114 Z" />
+        <path class="ink" d="M92 24 h12 l-12 12 h12 M114 10 h8 l-8 8 h8" style="--sw:3" />
+      </svg>
+      <nav class="socials" aria-label="Elsewhere">
+        <a href="https://instagram.com/foxfoxesfox" target="_blank" rel="noopener noreferrer">instagram ↗</a>
+        <a href="https://open.spotify.com/user/lonestary" target="_blank" rel="noopener noreferrer">spotify ↗</a>
+        <a href="https://steamcommunity.com/id/foxfoxesfox" target="_blank" rel="noopener noreferrer">steam ↗</a>
+        <a href="https://linkedin.com/in/mpjy" target="_blank" rel="noopener noreferrer">linkedin ↗</a>
+        <a href="https://github.com/foxfoxesfox" target="_blank" rel="noopener noreferrer">github ↗</a>
+      </nav>
+      <p class="handle">@foxfoxesfox</p>
+    </div>
+  </footer>
 
   <script src="script.js"></script>
 
-  <!-- Infinite pong -->
+  <!-- Infinite pong, drawn in wobbly ink -->
   <script>
     (function () {
       const canvas = document.getElementById('pongCanvas');
       if (!canvas) return;
       const ctx = canvas.getContext('2d');
 
-      const W = 380, H = 80;
-      const PAD_W = 5, PAD_H = 22, PAD_SPEED = 2.4, PAD_X = PAD_W + 6;
-      const BALL = 5, MAX_SPEED = 6;
+      const W = 380, H = 96;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = W * dpr;
+      canvas.height = H * dpr;
+      ctx.scale(dpr, dpr);
+
+      const PAD_W = 5, PAD_H = 24, PAD_SPEED = 2.4, PAD_X = PAD_W + 8;
+      const BALL = 6, MAX_SPEED = 6;
 
       const css = getComputedStyle(document.documentElement);
-      const FG  = css.getPropertyValue('--text').trim()       || '#1a1a1a';
-      const BG  = css.getPropertyValue('--card-bg').trim()    || '#f9f8f5';
-      const MUT = css.getPropertyValue('--text-muted').trim() || '#999';
+      const INK   = css.getPropertyValue('--ink').trim()      || '#141414';
+      const PAPER = css.getPropertyValue('--paper').trim()    || '#ffffff';
+      const SOFT  = css.getPropertyValue('--ink-soft').trim() || '#5c5c5c';
+      const FONT  = css.getPropertyValue('--font').trim()     || 'sans-serif';
 
       const rand = () => (Math.random() > 0.5 ? 1 : -1);
       const left  = { y: H / 2 - PAD_H / 2, score: 0 };
@@ -223,25 +223,55 @@
         b.vy = ((b.y - (pad.y + PAD_H / 2)) / (PAD_H / 2)) * 3.2;
       }
 
+      // Hand jitter is re-rolled 8 times a second ("boiling" lines), not every frame
+      let jitter = [];
+      function rollJitter() { jitter = Array.from({ length: 32 }, () => (Math.random() - 0.5) * 1.6); }
+      rollJitter();
+      const j = i => jitter[i % jitter.length];
+
+      function wobblyRect(x, y, w, h, k) {
+        ctx.beginPath();
+        ctx.moveTo(x + j(k), y + j(k + 1));
+        ctx.lineTo(x + w + j(k + 2), y + j(k + 3));
+        ctx.lineTo(x + w + j(k + 4), y + h + j(k + 5));
+        ctx.lineTo(x + j(k + 6), y + h + j(k + 7));
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+      }
+
       function draw() {
-        ctx.fillStyle = BG;
+        ctx.fillStyle = PAPER;
         ctx.fillRect(0, 0, W, H);
+        ctx.strokeStyle = INK;
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
 
-        ctx.fillStyle = MUT;
-        ctx.globalAlpha = 0.35;
-        for (let y = 4; y < H; y += 10) ctx.fillRect(W / 2 - 1, y, 2, 5);
+        // hand-drawn dashed net
+        ctx.lineWidth = 1.5;
+        ctx.globalAlpha = 0.4;
+        for (let y = 6, i = 0; y < H - 4; y += 12, i++) {
+          ctx.beginPath();
+          ctx.moveTo(W / 2 + j(i), y);
+          ctx.lineTo(W / 2 + j(i + 9), y + 6);
+          ctx.stroke();
+        }
 
-        ctx.globalAlpha = 0.5;
-        ctx.font = 'bold 14px "DM Mono", monospace';
-        ctx.textAlign = 'center';
-        ctx.fillText(left.score,  W / 2 - 30, 14);
-        ctx.fillText(right.score, W / 2 + 30, 14);
         ctx.globalAlpha = 1;
+        ctx.fillStyle = SOFT;
+        ctx.font = '700 15px ' + FONT;
+        ctx.textAlign = 'center';
+        ctx.fillText(left.score,  W / 2 - 30, 18);
+        ctx.fillText(right.score, W / 2 + 30, 18);
 
-        ctx.fillStyle = FG;
-        ctx.fillRect(PAD_X - PAD_W, Math.round(left.y), PAD_W, PAD_H);
-        ctx.fillRect(W - PAD_X, Math.round(right.y), PAD_W, PAD_H);
-        ctx.fillRect(Math.round(b.x - BALL / 2), Math.round(b.y - BALL / 2), BALL, BALL);
+        ctx.fillStyle = INK;
+        ctx.lineWidth = 2;
+        wobblyRect(PAD_X - PAD_W, left.y, PAD_W, PAD_H, 0);
+        wobblyRect(W - PAD_X, right.y, PAD_W, PAD_H, 8);
+
+        ctx.beginPath();
+        ctx.arc(b.x + j(16) * 0.5, b.y + j(17) * 0.5, BALL / 2, 0, Math.PI * 2);
+        ctx.fill();
       }
 
       function update() {
@@ -266,42 +296,47 @@
 
       // Fixed 60 steps/sec so the game runs at the same speed on 120Hz screens
       const STEP = 1000 / 60;
-      let last = performance.now(), acc = 0;
+      let last = performance.now(), acc = 0, sinceJitter = 0;
       function loop(now) {
-        acc += Math.min(now - last, 100);
+        const dt = Math.min(now - last, 100);
+        acc += dt;
+        sinceJitter += dt;
         last = now;
         while (acc >= STEP) { update(); acc -= STEP; }
+        if (sinceJitter >= 125) { rollJitter(); sinceJitter = 0; }
         draw();
         requestAnimationFrame(loop);
       }
 
       // Respect "reduce motion": draw one still frame instead of animating
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) draw();
-      else requestAnimationFrame(loop);
+      const start = () => {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) draw();
+        else requestAnimationFrame(loop);
+      };
+      document.fonts ? document.fonts.ready.then(start) : start();
     })();
   </script>
 
   <!-- Commitments -->
   <script>
     (async function () {
-      const grid = document.getElementById('commitmentsGrid');
+      const list = document.getElementById('commitmentsGrid');
       try {
         const res = await fetch('assets/commitments.json');
         if (!res.ok) throw new Error();
         const items = await res.json();
 
-        grid.innerHTML = items.map(item => `
-          <div class="commitment-item">
-            <span class="commitment-icon" aria-hidden="true">${item.icon}</span>
-            <div class="commitment-body">
-              <div class="commitment-role">${item.role}</div>
-              <div class="commitment-org">${item.org}</div>
-              <div class="commitment-date">${item.date}</div>
+        list.innerHTML = items.map(item => `
+          <li>
+            <time>${item.date}</time>
+            <div>
+              <div class="role">${item.role}</div>
+              <div class="org">${item.org}</div>
             </div>
-          </div>
+          </li>
         `).join('');
       } catch {
-        grid.innerHTML = '<p class="load-error">Could not load commitments.</p>';
+        list.innerHTML = '<li class="load-error">Could not load commitments.</li>';
       }
     })();
   </script>

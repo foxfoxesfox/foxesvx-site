@@ -16,3 +16,15 @@ Thumbs.db
 
 # OS generated
 Desktop.ini
+
+# Impeccable (design tooling notes and caches)
+.impeccable/
+PRODUCT.md
+DESIGN.md
+
+# Claude Code local settings
+.claude/settings.local.json
+
+# Secrets
+.env
+.env.*
