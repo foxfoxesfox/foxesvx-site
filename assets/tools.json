@@ -5,6 +5,7 @@
       { "name": "Impeccable", "url": "https://github.com/pbakaus/impeccable", "desc": "A design language for AI agents: briefs, critiques and polish passes that make interfaces look intentional." },
       { "name": "Make Interfaces Feel Better", "url": "https://github.com/jakubkrehel/make-interfaces-feel-better", "desc": "The small details (radii, hit areas, numerals, motion) that make an interface feel polished." },
       { "name": "transitions.dev", "url": "https://github.com/Jakubantalik/transitions.dev", "desc": "A library of 40+ crafted UI transitions, with a skill so your agent uses them properly." },
+      { "name": "Apple Design", "url": "https://github.com/emilkowalski/skills", "desc": "Emil Kowalski's take on Apple's WWDC design talks for the web: springs, gestures, sheets and fluid motion." },
       { "name": "Motion Design Skill", "url": "https://github.com/lottiefiles/motion-design-skill", "desc": "LottieFiles' timing, easing and choreography principles, adapted from Disney animation for UI." },
       { "name": "Color Expert", "url": "https://github.com/meodai/skill.color-expert", "desc": "Colour science for agents: colour spaces, contrast (APCA, WCAG), palettes and pigment mixing." }
     ]
@@ -46,7 +47,9 @@
     "category": "Security",
     "tools": [
       { "name": "SkillSpector", "url": "https://github.com/nvidia/skillspector", "desc": "NVIDIA's scanner that checks agent skills for malicious patterns and prompt injection before you install them." },
-      { "name": "Claude Security", "url": "https://github.com/anthropics/claude-plugins-official/tree/main/plugins/claude-security", "desc": "Anthropic's plugin that scans a codebase for vulnerabilities and drafts verified fixes." }
+      { "name": "Claude Security", "url": "https://github.com/anthropics/claude-plugins-official/tree/main/plugins/claude-security", "desc": "Anthropic's plugin that scans a codebase for vulnerabilities and drafts verified fixes." },
+      { "name": "OWASP Security", "url": "https://github.com/agamm/claude-code-owasp", "desc": "Secure-coding guidance for agents: OWASP Top 10:2025, ASVS 5.0, and the LLM and agentic AI risk lists." },
+      { "name": "CC Safety Net", "url": "https://github.com/kenryu42/cc-safety-net", "desc": "Stops coding agents from running destructive commands or reading secrets like SSH keys and .env files." }
     ]
   },
   {
