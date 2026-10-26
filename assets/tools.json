@@ -27,7 +27,8 @@
       { "name": "video-use", "url": "https://github.com/browser-use/video-use", "desc": "Edit your own footage with a coding agent: cuts, captions and assembly." },
       { "name": "claude-watch", "url": "https://github.com/taoufik123-collab/claude-watch", "desc": "Lets Claude watch a video, from key frames and a transcript to a structured report." },
       { "name": "color-grade-ai", "url": "https://github.com/isaacrowntree/color-grade-ai", "desc": "Generates .cube LUTs to colour-correct footage in DaVinci Resolve and Premiere Pro." },
-      { "name": "Aseprite AI Artist", "url": "https://github.com/with-pebbly/aseprite-ai-artist", "desc": "Your agent paints, animates and exports pixel art right inside Aseprite." }
+      { "name": "Aseprite AI Artist", "url": "https://github.com/with-pebbly/aseprite-ai-artist", "desc": "Your agent paints, animates and exports pixel art right inside Aseprite." },
+      { "name": "Openverse", "url": "https://openverse.org", "desc": "WordPress's search engine for openly licensed images and audio, with the licence and credit line for each one." }
     ]
   },
   {
@@ -39,7 +40,9 @@
       { "name": "Academic Research Skills", "url": "https://github.com/imbad0202/academic-research-skills", "desc": "A full research pipeline for Claude Code: research, write, review, revise, finalise." },
       { "name": "Obsidian Skills", "url": "https://github.com/kepano/obsidian-skills", "desc": "Teaches agents the Obsidian CLI and its open formats: Markdown, Bases and JSON Canvas." },
       { "name": "Supabase Agent Skills", "url": "https://github.com/supabase/agent-skills", "desc": "Helps agents build on Supabase correctly, from schemas to security." },
+      { "name": "Instagram Agent Skill", "url": "https://github.com/Jakeschincariol/instagram-agent-skill", "desc": "Skills that write Reels, captions, carousels, stories and DMs, and plan the week on Instagram. You still do the posting." },
       { "name": "Graphify", "url": "https://github.com/Graphify-Labs/graphify", "desc": "Turns a codebase and its docs into a knowledge graph your agent can query." },
+      { "name": "codebase-memory-mcp", "url": "https://github.com/DeusData/codebase-memory-mcp", "desc": "A fast local MCP server that keeps a code graph of your repo, so the agent can trace calls without reading every file." },
       { "name": "CodeBurn", "url": "https://github.com/getagentseal/codeburn", "desc": "Tracks AI coding token usage and cost locally, across Claude Code, Cursor, Codex and more." }
     ]
   },
