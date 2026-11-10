@@ -298,8 +298,6 @@ p { text-wrap: pretty; }
 .project:nth-child(even) .shot { transform: rotate(0.8deg); }
 .project .shot:hover { transform: rotate(0deg); }
 .shot img { border-radius: 6px; width: 100%; height: auto; }
-.burst { position: absolute; top: -26px; left: -22px; width: 76px; transform: rotate(-12deg); z-index: 1; }
-.burst text { font: 800 22px var(--font); fill: var(--paper); font-variation-settings: 'INFM' 100; }
 .project-title { font-size: clamp(2rem, 4.5vw, 3rem); margin-bottom: 16px; }
 .project p { max-width: 60ch; }
 .project p a { text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
@@ -424,7 +422,6 @@ p { text-wrap: pretty; }
   .more { grid-template-columns: auto 1fr; }
   .more-arrow { display: none; }
   .peeker { right: var(--gutter); width: 68px; }
-  .burst { left: -8px; top: -20px; width: 62px; }
 }
 @media (max-width: 720px) {
   .hero { min-height: 0; padding-top: 56px; }
