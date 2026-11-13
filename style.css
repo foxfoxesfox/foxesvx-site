@@ -114,19 +114,22 @@ p { text-wrap: pretty; }
 .boil:hover { animation: boil 375ms steps(1) infinite; }
 .on-twos { animation: boil 500ms steps(1) infinite; }
 
-/* ── Sheets: punched animation paper on the desk, each with three peg holes ── */
+/* ── Sheets: prints laid on the desk, each with pencilled crop marks in its corners ── */
 .sheet {
-  --peg: min(250px, 30vw);
+  --m: 14px;                       /* how far in the marks sit */
+  --mark: linear-gradient(var(--blue), var(--blue));
   position: relative;   /* no z-index: the sheet underneath must be able to slip behind this one's paper */
   padding: 96px 0 clamp(56px, 8vw, 88px);
   border-radius: 5px;
   background-color: var(--paper);
-  background-image:
-    radial-gradient(circle at 50% 31px, var(--desk) 10.5px, transparent 11.5px),
-    linear-gradient(var(--desk), var(--desk)), linear-gradient(var(--desk), var(--desk));
+  background-image: var(--mark), var(--mark), var(--mark), var(--mark), var(--mark), var(--mark), var(--mark), var(--mark);
   background-repeat: no-repeat;
-  background-position: 0 0, calc(50% - var(--peg)) 25px, calc(50% + var(--peg)) 25px;
-  background-size: auto, 52px 13px, 52px 13px;
+  background-size: 22px 2px, 2px 22px, 22px 2px, 2px 22px, 22px 2px, 2px 22px, 22px 2px, 2px 22px;
+  background-position:
+    left var(--m) top var(--m), left var(--m) top var(--m),
+    right var(--m) top var(--m), right var(--m) top var(--m),
+    left var(--m) bottom var(--m), left var(--m) bottom var(--m),
+    right var(--m) bottom var(--m), right var(--m) bottom var(--m);
   box-shadow: 0 10px 30px -10px rgb(0 0 0 / 0.5);
 }
 .sheet + .sheet, .site-footer.sheet { margin-top: clamp(22px, 3.5vw, 40px); }
@@ -148,15 +151,16 @@ main.sheet, main > .sheet:first-child { padding-top: 150px; }
   padding: 62px var(--gutter) 0;
 }
 .slate {
-  position: absolute; top: 20px; left: var(--gutter); right: var(--gutter);
+  position: absolute; top: 24px; left: 48px; right: 48px;
   display: flex; justify-content: space-between;
   font: 700 1.125rem/1 var(--note); color: var(--blue);
 }
 .slate b { font-variant-numeric: tabular-nums; }
+.rec { display: inline-block; width: 9px; height: 9px; margin-right: 6px; border-radius: 50%; background: var(--red); }
 .brand { display: inline-flex; align-items: center; gap: 10px; font-size: 1.5rem; }
 .brand .doodle { width: 40px; height: auto; --sw: 7; }
 
-/* The timing chart is the menu. Small screens: a row of pencilled links. */
+/* The menu. Small screens: a row of pencilled links. */
 .nav { display: flex; gap: clamp(10px, 2.6vw, 28px); font: 700 1.25rem/1 var(--note); color: var(--blue); }
 .nav a { position: relative; padding: 12px 2px; transition: color var(--duration-quick); }
 .nav a:hover { color: var(--ink); }   /* red stays reserved for the current page */
@@ -168,6 +172,7 @@ main.sheet, main > .sheet:first-child { padding-top: 150px; }
 /* Wide screens: a strip of paper taped to the right edge, with a tick per page */
 @media (min-width: 1100px) {
   .sheet { padding-right: 132px; }
+  .hero { padding-right: 180px; }   /* keeps the fox's viewfinder clear of the menu strip */
   .nav {
     position: fixed; z-index: 20; right: calc(var(--edge) + 14px); top: 50%;
     flex-direction: column; gap: 0;
@@ -259,14 +264,15 @@ main.sheet, main > .sheet:first-child { padding-top: 150px; }
 @keyframes draw   { from { clip-path: inset(-20% 100% -20% -5%); } to { clip-path: inset(-20% -5% -20% -5%); } }
 @keyframes redraw { from { clip-path: inset(-20% 100% -20% -5%); } to { clip-path: inset(-20% -5% -20% -5%); } }
 
-/* the fox: blue construction under ink, animated on twos */
+/* the fox in the viewfinder: blue thirds grid behind, red focus box on its face, drawn in held poses */
+.af { fill: none; stroke: var(--red); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
 .stage { position: relative; justify-self: center; width: min(100%, 360px); }
 .hero-fox { display: block; width: 100%; height: auto; overflow: visible; }
 .fox-eyes { transform-box: fill-box; transform-origin: center; }   /* blink and gaze snap between poses, never tween */
 .fox-eyes.is-blinking { transform: scaleY(0.12); }
 .fox-tail {
   transform-box: fill-box; transform-origin: 0% 100%;
-  animation: wag 1.33s steps(8) infinite alternate;   /* 8 held drawings each way */
+  animation: wag 1.33s steps(8) infinite alternate;   /* held poses, like a flip-book */
 }
 @keyframes wag { from { transform: rotate(-4deg); } to { transform: rotate(6deg); } }
 .note { position: absolute; font: 700 1.3125rem/1.1 var(--note); color: var(--red); transform: rotate(-5deg); white-space: nowrap; }
@@ -292,7 +298,7 @@ main.sheet, main > .sheet:first-child { padding-top: 150px; }
 .tags { display: flex; flex-wrap: wrap; gap: 10px; }
 .tag { --r: 999px; --line: var(--blue); color: var(--blue); padding: 4px 14px; font-size: 0.9375rem; white-space: nowrap; }
 
-/* commitments: an exposure sheet, the ruled form animators log frames on */
+/* commitments: a ruled log, like a shoot's call sheet */
 .xsheet { width: 100%; border-collapse: collapse; }
 .xsheet th {
   font: 700 1.0625rem/1 var(--note); color: var(--blue); text-align: left;
@@ -552,7 +558,7 @@ main.sheet, main > .sheet:first-child { padding-top: 150px; }
   .note-about svg { display: none; }
   .note-wag { display: none; }
 }
-@media (max-width: 960px) { .slate { display: none; } }   /* it would run into the peg holes */
+@media (max-width: 720px) { .slate { display: none; } }
 @media (max-width: 720px) {
   .site-header { padding-top: 50px; }
   main.sheet, main > .sheet:first-child { padding-top: 124px; }

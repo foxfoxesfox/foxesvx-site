@@ -40,11 +40,16 @@ if (eyes.length && !reduceMotion) {
   })();
 }
 
-// ── Frame counter in the slate ticks at 12 fps, like a pencil test shot on twos ──
-const frame = document.getElementById('fr');
-if (frame && !reduceMotion) {
-  let n = 1;
-  setInterval(() => { n = n % 999 + 1; frame.textContent = String(n).padStart(3, '0'); }, 1000 / 12);
+// ── Timecode in the slate runs at 24 frames a second, like a camera that's rolling ──
+const timecode = document.getElementById('tc');
+if (timecode && !reduceMotion) {
+  const two = n => String(n).padStart(2, '0');
+  let f = 0;
+  setInterval(() => {
+    f++;
+    const sec = Math.floor(f / 24);
+    timecode.textContent = `${two(Math.floor(sec / 3600) % 100)}:${two(Math.floor(sec / 60) % 60)}:${two(sec % 60)}:${two(f % 24)}`;
+  }, 1000 / 24);
 }
 
 // ── Intro types itself out once ──
