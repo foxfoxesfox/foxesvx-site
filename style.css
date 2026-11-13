@@ -1,13 +1,19 @@
 /* ── Tokens ── */
 :root {
-  --paper:     #ffffff;
-  --ink:       #141414;
-  --ink-soft:  #5c5c5c;
-  --ink-faint: #ececec;
+  --desk:      #222a38;
+  --paper:     #f6f8fb;   /* the sheet */
+  --under:     #dfe6ee;   /* the sheet underneath */
+  --ink:       #17181c;
+  --ink-soft:  #565e6c;
+  --ink-faint: #e6ebf1;
+  --blue:      #2460d0;   /* construction pencil: guides, tags, secondary actions */
+  --red:       #d42c22;   /* correction pencil: notes and "you are here" only */
 
   --font: 'Shantell Sans', 'Comic Sans MS', system-ui, sans-serif;
+  --note: 'Gaegu', 'Shantell Sans', 'Comic Sans MS', cursive;
   --wrap: 1120px;
-  --gutter: clamp(16px, 4vw, 48px);
+  --gutter: clamp(18px, 4vw, 56px);
+  --edge: clamp(8px, 2vw, 26px);   /* desk showing around the sheets */
 
   /* motion tokens (transitions.dev scale) */
   --duration-quick: 150ms;
@@ -15,12 +21,11 @@
   --duration-slow: 400ms;
   --duration-very-slow: 500ms;
   --ease-smooth-out: cubic-bezier(0.22, 1, 0.36, 1);
-  --ease-bounce: cubic-bezier(0.34, 1.36, 0.64, 1);
   --scale-large: 0.96;
 
-  /* hand-drawn line art used as backgrounds */
-  --squiggle: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 8'%3E%3Cpath d='M0 5 C5 1 10 1 15 4 S25 7 30 4 S38 2 40 4' fill='none' stroke='%23141414' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
-  --loop: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 40' preserveAspectRatio='none'%3E%3Cpath d='M10 24 C8 10 58 3 86 9 C100 13 98 31 70 35 C42 39 6 36 4 24 C3 15 22 7 44 6' fill='none' stroke='%23141414' stroke-width='2' stroke-linecap='round' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E");
+  /* pencil lines used as backgrounds */
+  --squiggle: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 8'%3E%3Cpath d='M0 5 C5 1 10 1 15 4 S25 7 30 4 S38 2 40 4' fill='none' stroke='%232460d0' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+  --loop: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 40' preserveAspectRatio='none'%3E%3Cpath d='M10 24 C8 10 58 3 86 9 C100 13 98 31 70 35 C42 39 6 36 4 24 C3 15 22 7 44 6' fill='none' stroke='%23d42c22' stroke-width='2.5' stroke-linecap='round' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E");
 }
 
 /* ── Reset ── */
@@ -28,25 +33,28 @@
 html {
   -webkit-font-smoothing: antialiased;
   scroll-behavior: smooth;
-  scrollbar-color: var(--ink) var(--paper);
+  scrollbar-color: var(--blue) var(--desk);
   scrollbar-width: thin;
 }
 body {
-  background: var(--paper);
+  position: relative;
+  background: var(--desk);
   color: var(--ink);
   font-family: var(--font);
   font-size: 1.0625rem;
   line-height: 1.6;
   font-variation-settings: 'INFM' 15, 'BNCE' 0;
-  caret-color: var(--ink);
+  caret-color: var(--blue);
+  padding: var(--edge) var(--edge) calc(var(--edge) + 8px);
+  overflow-x: hidden;
 }
 img  { display: block; max-width: 100%; }
 a    { color: inherit; text-decoration: none; }
 button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
 ul, ol { list-style: none; }
 p { text-wrap: pretty; }
-::selection { background: var(--ink); color: var(--paper); }
-:focus-visible { outline: 2px dashed var(--ink); outline-offset: 4px; border-radius: 8px; }
+::selection { background: var(--blue); color: #fff; }
+:focus-visible { outline: 2px dashed var(--red); outline-offset: 4px; border-radius: 8px; }
 
 .defs { position: absolute; width: 0; height: 0; overflow: hidden; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
@@ -64,13 +72,22 @@ p { text-wrap: pretty; }
   line-height: 1;
   text-wrap: balance;
 }
+/* Big titles keep their blue rough showing behind the ink, slightly off-register */
+[data-t] { position: relative; z-index: 0; }
+[data-t]::before {
+  content: attr(data-t);
+  position: absolute; left: -0.045em; top: 0.035em; z-index: -1;
+  color: transparent; -webkit-text-stroke: 2px var(--blue); opacity: 0.7;
+  filter: url(#rough-a);
+}
 
 /* ── Doodle SVG paint ── */
 .doodle { overflow: visible; filter: url(#rough-a); }
-.doodle .ink, .leaf .ink { fill: none; stroke: var(--ink); stroke-width: var(--sw, 4); stroke-linecap: round; stroke-linejoin: round; }
-.doodle .solid, .leaf .solid { fill: var(--ink); stroke: var(--ink); stroke-width: var(--sw, 4); stroke-linejoin: round; }
-.doodle .paper, .leaf .paper { fill: var(--paper); stroke: var(--ink); stroke-width: var(--sw, 4); stroke-linecap: round; stroke-linejoin: round; }
+.doodle .ink   { fill: none; stroke: var(--ink); stroke-width: var(--sw, 4); stroke-linecap: round; stroke-linejoin: round; }
+.doodle .solid { fill: var(--ink); stroke: var(--ink); stroke-width: var(--sw, 4); stroke-linejoin: round; }
+.doodle .paper { fill: var(--paper); stroke: var(--ink); stroke-width: var(--sw, 4); stroke-linecap: round; stroke-linejoin: round; }
 .doodle .dot   { fill: var(--ink); }
+.con { fill: none; stroke: var(--blue); stroke-width: 2.2; stroke-linecap: round; opacity: 0.65; filter: url(#rough-b); }
 
 /* Sketch = an element whose outline (or fill) is drawn by hand.
    The outline lives on ::before so the wobble filter never touches the text. */
@@ -78,14 +95,15 @@ p { text-wrap: pretty; }
 .sketch::before {
   content: '';
   position: absolute; inset: 0; z-index: -1;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--line, var(--ink));
   border-radius: var(--r, 14px);
   background: var(--fill, transparent);
   filter: url(#rough-a);
   pointer-events: none;
 }
 
-/* Line boil: the outline redraws itself on hover, like hand animation on twos */
+/* Line boil: the drawing is re-traced every few frames, like hand animation.
+   Hover boils an outline; .on-twos keeps the hero fox alive (the page's one ambient moment). */
 @keyframes boil {
   0%   { filter: url(#rough-a); }
   33%  { filter: url(#rough-b); }
@@ -93,136 +111,177 @@ p { text-wrap: pretty; }
 }
 .sketch:hover::before,
 .boil:hover { animation: boil 375ms steps(1) infinite; }
+.on-twos { animation: boil 500ms steps(1) infinite; }
 
-/* ── Falling leaves (ambient background, built by script.js) ── */
-.site-header, main, .site-footer { position: relative; z-index: 1; }
-.leaves { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
-.leaf {
-  position: absolute; top: 0; left: var(--x);
-  width: var(--size); opacity: var(--o);
-  will-change: transform;
-  /* constant drop like a leaf at terminal speed; the sway below carries the easing */
-  animation: leaf-fall var(--fall) linear var(--delay) infinite;
+/* ── Sheets: punched animation paper on the desk, each with three peg holes ── */
+.sheet {
+  --peg: min(250px, 30vw);
+  position: relative;   /* no z-index: the sheet underneath must be able to slip behind this one's paper */
+  padding: 96px 0 clamp(56px, 8vw, 88px);
+  border-radius: 5px;
+  background-color: var(--paper);
+  background-image:
+    radial-gradient(circle at 50% 31px, var(--desk) 10.5px, transparent 11.5px),
+    linear-gradient(var(--desk), var(--desk)), linear-gradient(var(--desk), var(--desk));
+  background-repeat: no-repeat;
+  background-position: 0 0, calc(50% - var(--peg)) 25px, calc(50% + var(--peg)) 25px;
+  background-size: auto, 52px 13px, 52px 13px;
+  box-shadow: 0 10px 30px -10px rgb(0 0 0 / 0.5);
 }
-.leaf svg {
-  display: block; width: 100%; height: auto; overflow: visible;
-  --sw: 2.5;
-  animation: leaf-sway var(--sway-time) ease-in-out var(--delay) infinite alternate;
+.sheet + .sheet, .site-footer.sheet { margin-top: clamp(22px, 3.5vw, 40px); }
+.sheet::before {            /* the next sheet in the stack, peeking out */
+  content: ''; position: absolute; inset: 0; z-index: -1; border-radius: 5px;
+  background: var(--under);
+  transform: rotate(-0.5deg) translate(-5px, 6px);
+  box-shadow: 0 8px 20px -8px rgb(0 0 0 / 0.45);
 }
-@keyframes leaf-fall { from { transform: translateY(-15vh); } to { transform: translateY(115vh); } }
-@keyframes leaf-sway {
-  from { transform: translateX(calc(var(--sway) * -1)) rotate(calc(var(--spin) * -1)); }
-  to   { transform: translateX(var(--sway)) rotate(var(--spin)); }
-}
+main.sheet, main > .sheet:first-child { padding-top: 150px; }
 
 /* ── Layout ── */
 .wrap { width: 100%; max-width: var(--wrap); margin-inline: auto; padding-inline: var(--gutter); }
 
-/* ── Header ── */
+/* ── Header: lies over the top of the first sheet ── */
 .site-header {
+  position: absolute; z-index: 5; top: var(--edge); left: var(--edge); right: var(--edge);
   display: flex; align-items: center; justify-content: space-between; gap: 16px;
-  max-width: var(--wrap); margin-inline: auto;
-  padding: 22px var(--gutter);
+  padding: 62px var(--gutter) 0;
 }
+.slate {
+  position: absolute; top: 20px; left: var(--gutter); right: var(--gutter);
+  display: flex; justify-content: space-between;
+  font: 700 1.125rem/1 var(--note); color: var(--blue);
+}
+.slate b { font-variant-numeric: tabular-nums; }
 .brand { display: inline-flex; align-items: center; gap: 10px; font-size: 1.5rem; }
 .brand .doodle { width: 40px; height: auto; --sw: 7; }
 
-.nav { display: flex; gap: clamp(14px, 3vw, 32px); font-size: 1.0625rem; }
-.nav a { position: relative; padding: 10px 2px; }
-.nav a::after {
-  content: '';
-  position: absolute; left: 0; right: 0; bottom: 2px; height: 8px;
-  background: var(--squiggle) repeat-x left center / 20px 8px;
-  transform: scaleX(0); transform-origin: left;
-  transition: transform var(--duration-fast) var(--ease-smooth-out);
-}
-.nav a:hover::after { transform: scaleX(1); }
+/* The timing chart is the menu. Small screens: a row of pencilled links. */
+.nav { display: flex; gap: clamp(10px, 2.6vw, 28px); font: 700 1.25rem/1 var(--note); color: var(--blue); }
+.nav a { position: relative; padding: 12px 2px; transition: color var(--duration-quick); }
+.nav a:hover { color: var(--ink); }   /* red stays reserved for the current page */
+.nav a[aria-current='page'] { color: var(--red); }
 .nav a[aria-current='page']::after {
-  inset: 0 -9px; height: auto;
+  content: ''; position: absolute; inset: 0 -13px;   /* wide enough that the stroke's start clears the first letter */
   background: var(--loop) no-repeat center / 100% 100%;
-  transform: none;
+}
+/* Wide screens: a strip of paper taped to the right edge, with a tick per page */
+@media (min-width: 1100px) {
+  .sheet { padding-right: 132px; }
+  .nav {
+    position: fixed; z-index: 20; right: calc(var(--edge) + 14px); top: 50%;
+    flex-direction: column; gap: 0;
+    padding: 12px 14px 12px 20px;
+    background: var(--paper); border-radius: 3px;
+    box-shadow: 0 1px 2px rgb(0 0 0 / 0.2), 0 8px 20px -6px rgb(0 0 0 / 0.4);
+    transform: translateY(-50%) rotate(1deg);
+    view-transition-name: chart;
+  }
+  .nav::before {
+    content: ''; position: absolute; right: 23px; top: 14px; bottom: 14px;
+    border-left: 2px solid var(--blue); filter: url(#rough-a);
+  }
+  .nav::after {             /* the strip of masking tape holding it to the desk */
+    content: ''; position: absolute; top: -10px; left: 50%; width: 58px; height: 20px;
+    background: color-mix(in srgb, var(--under) 82%, var(--blue));
+    opacity: 0.9; transform: translateX(-50%) rotate(-5deg);
+    clip-path: polygon(0 12%, 4% 0, 9% 10%, 100% 0, 97% 50%, 100% 100%, 5% 100%, 0 88%, 3% 50%);
+  }
+  .nav a { padding: 11px 36px 11px 0; text-align: right; }
+  .nav a::after, .nav a[aria-current='page']::after {
+    content: ''; position: absolute; inset: 50% 2px auto auto;
+    width: 16px; border-top: 2px solid var(--blue); background: none;
+    transition: width var(--duration-fast) var(--ease-smooth-out);
+  }
+  .nav a:hover::after { width: 22px; border-color: var(--ink); }
+  .nav a[aria-current='page']::after {
+    width: 20px; height: 20px; margin-top: -10px; right: 0;
+    border: 2.5px solid var(--red); border-radius: 50%; filter: url(#rough-c);
+  }
 }
 
-/* ── Buttons ── */
+/* ── Buttons: inked = final, blue pencil = rough ── */
 .pill {
-  --r: 999px;
+  --r: 999px; --line: var(--blue);
   display: inline-flex; align-items: center; gap: 8px;
-  padding: 12px 24px; font-weight: 600;
-  transition: transform var(--duration-fast) var(--ease-bounce);
+  padding: 12px 24px; font-weight: 600; color: var(--blue);
+  transition: transform var(--duration-fast) var(--ease-smooth-out);
 }
-.pill-ink { --fill: var(--ink); color: var(--paper); }
+.pill-ink { --fill: var(--ink); --line: var(--ink); color: var(--paper); }
 .pill:hover  { transform: translateY(-2px) rotate(-1deg); }
-.pill:active { transform: scale(0.96); transition-duration: var(--duration-quick); }
+.pill:active { transform: scale(var(--scale-large)); transition-duration: 100ms; }
 
 /* ── Hero ── */
 .hero {
-  min-height: calc(100svh - 90px);
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  text-align: center;
-  padding: 40px var(--gutter) 32px;
+  display: grid; grid-template-columns: 1.5fr 1fr; align-items: center; gap: 4vw;
+  min-height: calc(100svh - var(--edge));
+  padding-left: clamp(22px, 7vw, 110px); padding-bottom: 60px;
 }
-.hero-mark {
-  display: inline-flex; flex-direction: column;
-  font-size: clamp(5rem, 22vw, 11rem);
-}
-.hero-fox {
-  align-self: flex-end;
-  width: clamp(92px, 1.1em, 190px);
-  margin-right: 0.1em;
-  margin-bottom: -0.36em;
-}
+@media (max-width: 1099px) { .hero { padding-right: clamp(22px, 7vw, 110px); } }
 .hero-name {
-  position: relative; z-index: 1;
-  font-size: 1em;
-  line-height: 0.95;
+  width: fit-content; padding-inline: 0.04em 0.12em;
+  font-size: clamp(4.5rem, 13.5vw, 12.5rem); line-height: 0.9; letter-spacing: -0.02em;
+  /* two blue guide lines the lettering sits between */
+  background:
+    linear-gradient(var(--blue), var(--blue)) 0 22% / 100% 2px no-repeat,
+    linear-gradient(var(--blue), var(--blue)) 0 86% / 100% 2px no-repeat;
 }
-.hero-name .scribble {
-  position: absolute; left: 4%; right: 4%; bottom: -0.12em;
-  width: 92%; height: 0.24em; overflow: visible;
-}
-.scribble path { fill: none; stroke: var(--ink); stroke-width: 3.5; stroke-linecap: round; }
-/* drawn left to right; a clip reveal works at any aspect ratio, unlike dash tricks */
-.scribble { clip-path: inset(-50% 100% -50% 0); animation: draw 700ms var(--ease-smooth-out) 300ms forwards; }
-.hero-name:hover .scribble { animation: redraw 700ms var(--ease-smooth-out) forwards; }
-@keyframes draw   { to { clip-path: inset(-50% 0 -50% 0); } }
-@keyframes redraw { from { clip-path: inset(-50% 100% -50% 0); } to { clip-path: inset(-50% 0 -50% 0); } }
-
 .intro {
-  margin-top: 40px; max-width: 42ch;
-  font-size: clamp(1.125rem, 2.1vw, 1.3125rem); line-height: 1.55;
-  text-wrap: balance;
+  margin-top: 34px; max-width: 40ch;
+  font-size: clamp(1.125rem, 1.6vw, 1.25rem); line-height: 1.55;
 }
 .untyped { visibility: hidden; }
 .caret {
   display: inline-block; width: 2px; height: 1.1em; margin-right: -2px;
-  background: var(--ink); vertical-align: text-bottom;
+  background: var(--blue); vertical-align: text-bottom;
   animation: caret 1s steps(1) infinite;
 }
 @keyframes caret { 50% { opacity: 0; } }
-.hero-meta { margin-top: 18px; color: var(--ink-soft); font-size: 1.0625rem; }
+.hero-meta { margin-top: 12px; color: var(--ink-soft); }
 .hero-meta span + span::before { content: '·'; margin-inline: 0.6em; }
-.hero .pill { margin-top: 32px; }
-.scroll-cue { margin-top: 40px; display: block; width: 30px; }
-.scroll-cue .doodle { width: 30px; height: auto; --sw: 3; }
 
-/* fox life: eyes, blink, tail */
-.pupil { transition: transform 120ms ease-out; }
-.fox-eyes { transform-box: fill-box; transform-origin: center; transition: transform 90ms ease-in-out; }
+/* "see my projects", circled in red pencil */
+.cta {
+  position: relative; display: inline-block;
+  margin: 34px 0 0 14px; padding: 12px 26px;
+  font-weight: 700; font-size: 1.1875rem;
+  transition: transform var(--duration-fast) var(--ease-smooth-out);
+}
+.cta svg {
+  position: absolute; inset: -10px -14px; width: calc(100% + 28px); height: calc(100% + 20px); overflow: visible;
+  /* clip reveal, not a dash trick: the loop is stretched to the button, where dash lengths go wrong */
+  animation: draw 700ms var(--ease-smooth-out) 500ms backwards;
+}
+.cta path { fill: none; stroke: var(--red); stroke-width: 3; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+.cta:hover { transform: translateY(-2px) rotate(-1deg); }
+.cta:hover svg { animation: redraw var(--duration-very-slow) var(--ease-smooth-out); }
+.cta:active { transform: scale(var(--scale-large)); transition-duration: 100ms; }
+@keyframes draw   { from { clip-path: inset(-20% 100% -20% -5%); } to { clip-path: inset(-20% -5% -20% -5%); } }
+@keyframes redraw { from { clip-path: inset(-20% 100% -20% -5%); } to { clip-path: inset(-20% -5% -20% -5%); } }
+
+/* the fox: blue construction under ink, animated on twos */
+.stage { position: relative; justify-self: center; width: min(100%, 360px); }
+.hero-fox { display: block; width: 100%; height: auto; overflow: visible; }
+.fox-eyes { transform-box: fill-box; transform-origin: center; }   /* blink and gaze snap between poses, never tween */
 .fox-eyes.is-blinking { transform: scaleY(0.12); }
 .fox-tail {
   transform-box: fill-box; transform-origin: 0% 100%;
-  animation: sway 3.2s ease-in-out infinite alternate;
+  animation: wag 1.33s steps(8) infinite alternate;   /* 8 held drawings each way */
 }
-@keyframes sway { from { transform: rotate(-3deg); } to { transform: rotate(4deg); } }
+@keyframes wag { from { transform: rotate(-4deg); } to { transform: rotate(6deg); } }
+.note { position: absolute; font: 700 1.3125rem/1.1 var(--note); color: var(--red); transform: rotate(-5deg); white-space: nowrap; }
+.note-about { left: -12%; bottom: 99%; width: 17.5rem; white-space: normal; font-size: 1.375rem; transform: rotate(-3deg); }
+.note-wag { right: 2%; top: 101%; transform: rotate(4deg); }   /* under the tail, off the ink */
+.note svg { width: 70px; display: inline; vertical-align: middle; }
+.note path { fill: none; stroke: var(--red); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
 
 /* ── Sections ── */
-.section { padding-block: clamp(64px, 10vw, 120px) 0; }
-.section-title { font-size: clamp(2rem, 5vw, 2.75rem); margin-bottom: 28px; }
+.section-title { font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 10px; }
+.section-note { color: var(--ink-soft); margin-bottom: 30px; }
 .h3 { font-size: 1.5rem; margin-bottom: 14px; }
 
 .about-grid {
-  display: grid; gap: clamp(40px, 6vw, 72px) clamp(32px, 6vw, 96px);
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  display: grid; gap: clamp(40px, 6vw, 72px) clamp(32px, 5vw, 64px);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
 }
 .study li { position: relative; padding-left: 28px; margin-bottom: 6px; }
 .study li::before {
@@ -231,35 +290,28 @@ p { text-wrap: pretty; }
 }
 
 .tags { display: flex; flex-wrap: wrap; gap: 10px; }
-.tag { --r: 999px; --fill: var(--paper); padding: 4px 14px; font-size: 0.9375rem; white-space: nowrap; }
+.tag { --r: 999px; --line: var(--blue); color: var(--blue); padding: 4px 14px; font-size: 0.9375rem; white-space: nowrap; }
 
-
-/* commitments */
-.timeline li {
-  position: relative;
-  display: grid; grid-template-columns: 13rem 1fr; gap: 4px 32px;
-  padding-block: 18px;
+/* commitments: an exposure sheet, the ruled form animators log frames on */
+.xsheet { width: 100%; border-collapse: collapse; }
+.xsheet th {
+  font: 700 1.0625rem/1 var(--note); color: var(--blue); text-align: left;
+  padding: 10px 14px; border: 1.5px solid var(--blue);
 }
-.timeline li + li::before {
-  content: ''; position: absolute; left: 0; right: 0; top: 0;
-  border-top: 2px solid var(--ink); filter: url(#rough-b);
+.xsheet td {
+  padding: 14px; vertical-align: top;
+  border: 1.5px solid color-mix(in srgb, var(--blue) 55%, transparent);
 }
-.timeline time { color: var(--ink-soft); font-variant-numeric: tabular-nums; }
-.timeline .role { font-weight: 700; }
-.timeline .org  { color: var(--ink-soft); }
+.xsheet td:first-child { font-variant-numeric: tabular-nums; color: var(--ink-soft); white-space: nowrap; }
+.xsheet .role { font-weight: 700; }
+.xsheet tbody tr { transition: background-color var(--duration-quick); }
+.xsheet tbody tr:hover { background: color-mix(in srgb, var(--blue) 8%, transparent); }
 .load-error { color: var(--ink-soft); }
 
-/* ── Footer ── */
-.site-footer { margin-top: clamp(96px, 14vw, 160px); padding-bottom: 40px; }
-.footer-inner {
-  display: grid; grid-template-columns: auto 1fr; gap: 24px 48px; align-items: end;
-  position: relative; padding-top: 24px;
-}
-.footer-inner::before {
-  content: ''; position: absolute; left: var(--gutter); right: var(--gutter); top: 0;
-  border-top: 2px solid var(--ink); filter: url(#rough-c);
-}
-.sleepy { width: clamp(150px, 22vw, 210px); margin-top: -70px; }
+/* ── Footer: the last sheet ── */
+.site-footer.sheet { padding-block: 72px 36px; }
+.footer-inner { display: grid; grid-template-columns: auto 1fr; gap: 24px 48px; align-items: end; }
+.sleepy { width: clamp(150px, 22vw, 210px); }
 .socials { display: flex; flex-wrap: wrap; gap: 0 24px; justify-content: flex-end; }
 .socials a { position: relative; padding: 10px 0; }
 .socials a::after {
@@ -272,12 +324,12 @@ p { text-wrap: pretty; }
 .handle { grid-column: 1 / -1; font-size: 0.875rem; color: var(--ink-soft); }
 
 /* ── Sub-pages ── */
-.page-head { position: relative; padding-top: clamp(32px, 6vw, 64px); }
-.page-title { font-size: clamp(2.75rem, 13vw, 7.5rem); padding-bottom: 14px; }
-.page-head::after {
-  content: ''; display: block;
-  border-top: 2.5px solid var(--ink); filter: url(#rough-a);
+.page-head { position: relative; }
+.page-title {
+  font-size: clamp(2.75rem, 12vw, 7.5rem); padding-bottom: 14px; width: fit-content; max-width: 100%;
+  letter-spacing: -0.02em;
 }
+.page-head::after { content: ''; display: block; border-top: 2px solid var(--blue); filter: url(#rough-a); }
 .peeker {
   position: absolute; right: calc(var(--gutter) + 6%); bottom: -4px;
   width: clamp(84px, 13vw, 140px);
@@ -300,13 +352,13 @@ p { text-wrap: pretty; }
 .shot img { border-radius: 6px; width: 100%; height: auto; }
 .project-title { font-size: clamp(2rem, 4.5vw, 3rem); margin-bottom: 16px; }
 .project p { max-width: 60ch; }
-.project p a { text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+.project p a { text-decoration: underline; text-decoration-color: var(--blue); text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
 .project .tags { margin-top: 20px; }
 .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
 
 .project-list > * + *::before {
   content: ''; position: absolute; left: 0; right: 0; top: 0;
-  border-top: 2px dashed var(--ink); opacity: 0.5;
+  border-top: 2px dashed var(--blue); opacity: 0.5;
 }
 .project-list > * { position: relative; }
 
@@ -318,7 +370,7 @@ p { text-wrap: pretty; }
 .more svg { width: 28px; height: 28px; }
 .more-title { font-size: 1.5rem; }
 .more-sub { color: var(--ink-soft); font-size: 0.9375rem; }
-.more-arrow { font-size: 1.5rem; transition: transform var(--duration-fast) var(--ease-bounce); }
+.more-arrow { font-size: 1.5rem; transition: transform var(--duration-fast) var(--ease-smooth-out); }
 .more:hover .more-arrow { transform: translate(3px, -3px); }
 
 /* artworks + gallery: flush grid */
@@ -363,7 +415,7 @@ p { text-wrap: pretty; }
 .tool-list li { position: relative; }
 .tool-list li + li::before {
   content: ''; position: absolute; left: 0; right: 0; top: 0;
-  border-top: 2px solid var(--ink); filter: url(#rough-b); opacity: 0.35;
+  border-top: 1.5px solid var(--blue); filter: url(#rough-b); opacity: 0.4;
 }
 .tool {
   display: grid; grid-template-columns: 17rem 1fr;
@@ -378,12 +430,12 @@ p { text-wrap: pretty; }
   transition: transform var(--duration-fast) var(--ease-smooth-out);
 }
 .tool:hover .tool-name::after { transform: scaleX(1); }
-.tool-arrow { display: inline-block; transition: transform var(--duration-fast) var(--ease-bounce); }
+.tool-arrow { display: inline-block; transition: transform var(--duration-fast) var(--ease-smooth-out); }
 .tool:hover .tool-arrow { transform: translate(2px, -2px); }
 .tool-src { grid-area: src; font-size: 0.875rem; color: var(--ink-soft); overflow-wrap: anywhere; }
 .tool-desc { grid-area: desc; }
 
-/* lightbox */
+/* lightbox: the drawing lifted onto a clean sheet */
 .lightbox {
   position: fixed; inset: 0; z-index: 50;
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px;
@@ -391,7 +443,7 @@ p { text-wrap: pretty; }
   background: var(--paper);
   cursor: zoom-out;
   opacity: 0; visibility: hidden;
-  transition: opacity var(--duration-quick) ease-out, visibility 0s var(--duration-quick);
+  transition: opacity var(--duration-quick) var(--ease-smooth-out), visibility 0s var(--duration-quick);
 }
 .lightbox.open {
   opacity: 1; visibility: visible;
@@ -401,42 +453,61 @@ p { text-wrap: pretty; }
   max-width: min(100%, 1100px); max-height: calc(100svh - 160px); width: auto; height: auto;
   border-radius: 6px;
   transform: scale(var(--scale-large));
-  transition: transform var(--duration-quick) ease-out;
+  transition: transform var(--duration-quick) var(--ease-smooth-out);
 }
 .lightbox.open .lightbox-img { transform: none; transition: transform var(--duration-fast) var(--ease-smooth-out); }
 .lightbox-caption { font-size: 1.125rem; text-align: center; }
 .lightbox-close { --r: 999px; position: absolute; top: 16px; right: 16px; width: 48px; height: 48px; display: grid; place-items: center; }
 .lightbox-close svg { width: 20px; height: 20px; }
 
+/* ── Moving between pages: one sheet lifts off, the next settles ── */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition { navigation: auto; }
+  ::view-transition-old(root) { animation: sheet-out var(--duration-quick) var(--ease-smooth-out) both; }
+  ::view-transition-new(root) { animation: sheet-in var(--duration-fast) var(--ease-smooth-out) both; }
+}
+@keyframes sheet-out { to   { opacity: 0; transform: translateY(-10px); } }
+@keyframes sheet-in  { from { opacity: 0; transform: translateY(14px); } }
+
 /* ── Small screens ── */
+@media (max-width: 860px) {
+  .hero { grid-template-columns: 1fr; min-height: 0; gap: 20px; }
+  /* smaller fox with its note beside it, so the name and the button stay on the first screen */
+  .stage { order: -1; width: min(40%, 190px); justify-self: start; }
+  .note { font-size: 1.125rem; }
+  .note-about { left: 108%; top: 8%; bottom: auto; width: min(46vw, 16rem); transform: rotate(-2deg); }
+  .note-about svg { display: none; }
+  .note-wag { display: none; }
+}
+@media (max-width: 960px) { .slate { display: none; } }   /* it would run into the peg holes */
 @media (max-width: 720px) {
+  .site-header { padding-top: 50px; }
+  main.sheet, main > .sheet:first-child { padding-top: 124px; }
   .project { grid-template-columns: 1fr; }
   .project:nth-child(even) .shot { order: 0; }
-  .timeline li { grid-template-columns: 1fr; }
   .tool { grid-template-columns: 1fr; grid-template-areas: "name" "src" "desc"; }
   .tool-desc { margin-top: 6px; }
-  .timeline time { order: 2; font-size: 0.9375rem; }
+  /* the exposure sheet folds into one boxed entry per commitment */
+  .xsheet thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .xsheet tr { display: block; padding: 12px 14px; border: 1.5px solid color-mix(in srgb, var(--blue) 55%, transparent); border-bottom-width: 0; }
+  .xsheet tr:last-child { border-bottom-width: 1.5px; }
+  .xsheet td { display: block; padding: 0; border: 0; }
+  .xsheet td:first-child { white-space: normal; font-size: 0.9375rem; }
   .footer-inner { grid-template-columns: 1fr; justify-items: center; text-align: center; }
   .socials { justify-content: center; }
-  .sleepy { margin-top: -60px; }
   .more { grid-template-columns: auto 1fr; }
   .more-arrow { display: none; }
   .peeker { right: var(--gutter); width: 68px; }
 }
-@media (max-width: 720px) {
-  .hero { min-height: 0; padding-top: 56px; }
-}
 @media (max-width: 480px) {
   .brand span { display: none; }
-  /* four links + the circle around the current one must fit a phone; on the narrowest screens the nav wraps under the fox instead of running off the edge */
-  .site-header { flex-wrap: wrap; row-gap: 4px; }
-  .nav { gap: 14px; font-size: 0.9375rem; margin-right: 6px; }
-  .nav a[aria-current='page']::after { inset: 2px -7px; }
+  /* five links must fit a phone; on the narrowest screens the nav wraps under the fox instead of running off the edge */
+  .site-header { flex-wrap: wrap; row-gap: 0; }
+  main.sheet, main > .sheet:first-child { padding-top: 176px; }   /* the header is two rows tall here */
+  .nav { gap: 0 11px; font-size: 1.0625rem; flex-wrap: wrap; padding-left: 8px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .leaves { display: none; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
-  .scribble { clip-path: none; }
 }

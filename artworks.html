@@ -24,7 +24,7 @@
   <link rel="apple-touch-icon" href="/assets/fox.png?v=3">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Shantell+Sans:ital,wght,BNCE,INFM@0,300..800,-100..100,0..100&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Shantell+Sans:ital,wght,BNCE,INFM@0,300..800,-100..100,0..100&family=Gaegu:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -46,6 +46,7 @@
   <a class="skip" href="#main">skip to content</a>
 
   <header class="site-header">
+    <p class="slate" aria-hidden="true"><span>sc. 03 · artworks</span><span>fr. <b id="fr">001</b> · on twos</span></p>
     <a href="index.html" class="brand lettered" aria-label="martin's page, home">
       <svg class="doodle" viewBox="34 8 132 124" aria-hidden="true">
     <path class="paper" d="M60 64 L50 12 L94 46 Z" />
@@ -61,6 +62,7 @@
       <span>martin</span>
     </a>
     <nav class="nav" aria-label="Main">
+      <a href="index.html">home</a>
       <a href="projects.html">projects</a>
       <a href="artworks.html" aria-current="page">artworks</a>
       <a href="gallery.html">gallery</a>
@@ -68,9 +70,9 @@
     </nav>
   </header>
 
-  <main id="main">
+  <main id="main" class="sheet">
     <div class="wrap page-head">
-      <h1 class="page-title lettered">Artworks</h1>
+      <h1 class="page-title lettered" data-t="Artworks">Artworks</h1>
       <svg class="doodle peeker boil" viewBox="40 8 120 92" aria-hidden="true">
       <path class="paper" d="M60 64 L50 12 L94 46 Z" />
     <path class="paper" d="M140 64 L150 12 L106 46 Z" />
@@ -101,7 +103,7 @@
     <noscript><p class="wrap empty">Enable JavaScript to view the artworks.</p></noscript>
   </main>
 
-  <footer class="site-footer">
+  <footer class="site-footer sheet">
     <div class="wrap footer-inner">
       <svg class="doodle sleepy" viewBox="0 0 220 120" role="img" aria-label="A fox curled up asleep">
         <path class="paper" d="M50 102 C40 66 76 36 122 36 C168 36 198 66 188 102 Z" />

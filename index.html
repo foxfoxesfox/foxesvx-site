@@ -24,7 +24,7 @@
   <link rel="apple-touch-icon" href="/assets/fox.png?v=3">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Shantell+Sans:ital,wght,BNCE,INFM@0,300..800,-100..100,0..100&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Shantell+Sans:ital,wght,BNCE,INFM@0,300..800,-100..100,0..100&family=Gaegu:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -38,6 +38,7 @@
   <a class="skip" href="#main">skip to content</a>
 
   <header class="site-header">
+    <p class="slate" aria-hidden="true"><span>sc. 01 · home</span><span>fr. <b id="fr">001</b> · on twos</span></p>
     <a href="index.html" class="brand lettered" aria-label="martin's page, home">
       <svg class="doodle" viewBox="34 8 132 124" aria-hidden="true">
     <path class="paper" d="M60 64 L50 12 L94 46 Z" />
@@ -53,6 +54,7 @@
       <span>martin</span>
     </a>
     <nav class="nav" aria-label="Main">
+      <a href="index.html" aria-current="page">home</a>
       <a href="projects.html">projects</a>
       <a href="artworks.html">artworks</a>
       <a href="gallery.html">gallery</a>
@@ -62,9 +64,22 @@
 
   <main id="main">
 
-    <section class="hero">
-      <div class="hero-mark">
-        <svg class="doodle hero-fox boil" viewBox="34 8 166 200" aria-hidden="true">
+    <section class="hero sheet">
+      <div>
+        <h1 class="hero-name lettered" data-t="Martin">Martin</h1>
+        <p class="intro" id="intro">I'm an undergrad at NTU who loves making things. Right now I'm building more personal projects, getting better at dance, and picking up photography and videography along the way.</p>
+        <p class="hero-meta"><span>Singapore</span><span>INFJ-T</span><span>Taurus ♉&#xFE0E;</span></p>
+        <a href="projects.html" class="cta">see my projects →
+          <svg viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true"><path d="M12 22 C8 8 58 2 86 8 C100 12 98 31 70 35 C42 39 5 36 4 24 C3 15 22 7 44 6" /></svg>
+        </a>
+      </div>
+
+      <div class="stage">
+        <!-- blue construction first, the inked fox on top -->
+        <svg class="hero-fox" viewBox="20 0 200 215" aria-hidden="true" style="position:absolute; inset:0">
+          <g class="con"><circle cx="98" cy="84" r="50" /><ellipse cx="104" cy="158" rx="54" ry="50" /><path d="M98 20 C92 80 96 140 108 212 M44 84 L156 84 M58 30 L98 84 L142 30 M150 196 C196 200 214 160 190 126" /></g>
+        </svg>
+        <svg class="doodle hero-fox on-twos" viewBox="20 0 200 215" aria-hidden="true">
       <g class="fox-tail">
         <path class="solid" d="M136 200 C178 208 200 182 194 148 C190 124 166 116 156 132 C170 140 177 158 170 172 C163 186 150 190 136 188 Z" />
         <path class="paper" d="M156 132 C160 120 180 116 190 130 C193 136 194 142 194 148 L187 141 L183 150 L177 140 L171 148 L167 137 L160 141 Z" />
@@ -86,17 +101,13 @@
       <g class="fox-eyes"><circle class="dot pupil" cx="80" cy="80" r="5" /><circle class="dot pupil" cx="120" cy="80" r="5" /></g>
       <path class="solid" d="M94 113 Q100 111 106 113 Q102 121 100 122 Q98 121 94 113 Z" style="--sw:2" />
     </svg>
-        <h1 class="hero-name lettered">Martin<svg class="scribble" viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path d="M6 12 C60 4 120 16 170 9 S260 6 294 11" /></svg></h1>
+        <p class="note note-about">the fox is my favourite animal, so I built my whole identity around it: my handle, my domain, and this little guy <svg viewBox="0 0 70 30" aria-hidden="true"><path d="M4 8 C24 2 44 8 60 22 M48 22 L61 23 L58 10" /></svg></p>
+        <p class="note note-wag" aria-hidden="true">more wag!</p>
       </div>
-      <p class="intro" id="intro">I'm an undergrad at NTU who loves making things. Right now I'm building more personal projects, getting better at dance, and picking up photography and videography along the way.</p>
-      <p class="hero-meta"><span>Singapore</span><span>INFJ-T</span><span>Taurus ♉&#xFE0E;</span></p>
-      <a href="projects.html" class="pill pill-ink sketch">see my projects →</a>
-      <a href="#about" class="scroll-cue boil" aria-label="Scroll to about me">
-        <svg class="doodle" viewBox="0 0 30 70" aria-hidden="true"><path class="ink" d="M15 2 C4 14 26 22 15 34 C6 44 22 50 15 64 M6 54 L15 66 L24 54" /></svg>
-      </a>
     </section>
 
-    <section class="wrap section" id="about" aria-label="About me">
+    <section class="sheet" id="about" aria-label="About me">
+      <div class="wrap">
       <div class="about-grid">
         <div>
           <h2 class="h3 lettered">Areas of Study</h2>
@@ -132,18 +143,25 @@
           </ul>
         </div>
       </div>
+      </div>
     </section>
 
-    <section class="wrap section" aria-labelledby="commitments-title">
-      <h2 id="commitments-title" class="section-title lettered">Commitments &amp; CCA</h2>
-      <ol id="commitmentsGrid" class="timeline">
-        <li><noscript>Enable JavaScript to see my commitments.</noscript></li>
-      </ol>
+    <section class="sheet" aria-labelledby="commitments-title">
+      <div class="wrap">
+        <h2 id="commitments-title" class="section-title lettered">Commitments &amp; CCA</h2>
+        <p class="section-note">Logged like an animator's exposure sheet, newest on top.</p>
+        <table class="xsheet">
+          <thead><tr><th scope="col">when</th><th scope="col">role</th><th scope="col">where</th></tr></thead>
+          <tbody id="commitmentsGrid">
+            <tr><td colspan="3"><noscript>Enable JavaScript to see my commitments.</noscript></td></tr>
+          </tbody>
+        </table>
+      </div>
     </section>
 
   </main>
 
-  <footer class="site-footer">
+  <footer class="site-footer sheet">
     <div class="wrap footer-inner">
       <svg class="doodle sleepy" viewBox="0 0 220 120" role="img" aria-label="A fox curled up asleep">
         <path class="paper" d="M50 102 C40 66 76 36 122 36 C168 36 198 66 188 102 Z" />
@@ -181,17 +199,16 @@
         if (!res.ok) throw new Error();
         const items = await res.json();
 
-        list.innerHTML = items.map(item => `
-          <li>
-            <time>${item.date}</time>
-            <div>
-              <div class="role">${item.role}</div>
-              <div class="org">${item.org}</div>
-            </div>
-          </li>
+        // the file is kept oldest-first; the sheet reads newest-first
+        list.innerHTML = items.reverse().map(item => `
+          <tr>
+            <td>${item.date}</td>
+            <td class="role">${item.role}</td>
+            <td>${item.org}</td>
+          </tr>
         `).join('');
       } catch {
-        list.innerHTML = '<li class="load-error">Could not load commitments.</li>';
+        list.innerHTML = '<tr><td colspan="3" class="load-error">Could not load commitments.</td></tr>';
       }
     })();
   </script>
