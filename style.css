@@ -421,9 +421,10 @@ main.sheet, main > .sheet:first-child { padding-top: 150px; }
 .tile.is-skeleton { cursor: default; }
 
 /* artworks: each drawing taped up whole, never cropped, with its title pencilled underneath */
-.wall { display: block; columns: 3 230px; column-gap: clamp(22px, 3vw, 36px); }
+/* a plain grid, not CSS columns: browsers lose track of tilted items inside columns and stop painting them after a hover */
+.wall { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr)); gap: 0 clamp(22px, 3vw, 36px); align-items: start; }
 .wall .tile {
-  break-inside: avoid; aspect-ratio: auto; overflow: visible; background: none;
+  aspect-ratio: auto; overflow: visible; background: none;
   margin-bottom: 36px; padding-top: 12px; text-align: left;
   transform: rotate(var(--tilt, -1deg));
   transition: transform var(--duration-slow) var(--ease-smooth-out);
@@ -482,6 +483,20 @@ main.sheet, main > .sheet:first-child { padding-top: 150px; }
 }
 .contact .tile:not(.is-skeleton):hover::before, .contact .tile:focus-visible::before { opacity: 1; transform: none; }
 .contact .tile:focus-visible { outline-color: var(--paper); }
+
+/* videos: the same film, bigger frames, with the title pencilled on the edge */
+.reel { grid-template-columns: repeat(auto-fill, minmax(min(100%, 400px), 1fr)); margin-top: 0; }
+.reel .tile { cursor: pointer; }
+.reel .tile img, .reel iframe { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; border: 0; }
+.reel .tile::after { content: attr(data-title); }
+.reel .is-playing { cursor: default; }
+.reel .is-playing::before { display: none; }
+.play {
+  position: absolute; z-index: 2; inset: 0; margin: auto; width: 64px; height: 64px;
+  transition: transform var(--duration-fast) var(--ease-smooth-out);
+}
+.reel .tile:hover .play { transform: scale(1.08); }
+.reel .tile:active .play { transform: scale(var(--scale-large)); transition-duration: 100ms; }
 
 .count { margin-top: 20px; color: var(--ink-soft); }
 .empty { padding-block: 48px; color: var(--ink-soft); max-width: 46ch; }

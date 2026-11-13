@@ -87,7 +87,16 @@
     </svg>
     </div>
 
-    <div class="wrap"><p id="photoCount" class="count" aria-live="polite"></p></div>
+    <section class="wrap" id="videos" aria-labelledby="videos-title">
+      <h2 id="videos-title" class="group-title lettered">Videos</h2>
+      <div id="videoReel" class="contact reel"></div>
+      <p class="count">Filmed on iPhone 14 Pro Max, 4K 60FPS, cropped, reframed and colour-graded by me.</p>
+    </section>
+
+    <div class="wrap">
+      <h2 class="group-title lettered">Photos</h2>
+      <p id="photoCount" class="count" aria-live="polite"></p>
+    </div>
 
     <div class="wrap"><div id="photoGrid" class="contact">
       <div class="tile is-skeleton" aria-hidden="true"></div>
@@ -164,7 +173,38 @@
       });
     }
 
+    // Videos: a poster on a strip of film; pressing play swaps in the YouTube player, so nothing loads from YouTube before that
+    async function loadVideos() {
+      const reel = document.getElementById('videoReel');
+      let videos = [];
+      try {
+        const res = await fetch('assets/videos.json');
+        if (res.ok) videos = await res.json();
+      } catch {}
+      if (!videos.length) { document.getElementById('videos').remove(); return; }
+
+      videos.forEach(video => {
+        const card = document.createElement('button');
+        card.type = 'button';
+        card.className = 'tile';
+        card.dataset.title = video.title;
+        card.setAttribute('aria-label', `Play ${video.title}`);
+        card.innerHTML = `
+          <img src="assets/videos/${video.poster}" alt="${video.alt || ''}" width="1280" height="720" loading="lazy" decoding="async" />
+          <svg class="play doodle" viewBox="0 0 64 64" aria-hidden="true"><circle class="paper" cx="32" cy="32" r="27" style="--sw:3" /><path class="solid" d="M26 20 L46 32 L26 44 Z" style="--sw:3" /></svg>`;
+        card.addEventListener('click', () => {
+          const frame = document.createElement('div');
+          frame.className = 'tile is-playing';
+          frame.dataset.title = video.title;
+          frame.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${video.id}?autoplay=1&rel=0" title="${video.title}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
+          card.replaceWith(frame);
+        });
+        reel.appendChild(card);
+      });
+    }
+
     loadGallery();
+    loadVideos();
   </script>
 </body>
 </html>
