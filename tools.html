@@ -81,7 +81,7 @@
 
     <div class="wrap">
       <p class="page-intro">List of skills, libraries and sites I find useful.</p>
-      <div id="toolList">
+      <div id="toolList" class="tool-layout">
         <noscript><p class="empty">Enable JavaScript to see the tools.</p></noscript>
       </div>
     </div>
@@ -129,8 +129,12 @@
         if (!res.ok) throw new Error();
         const groups = await res.json();
 
-        list.innerHTML = groups.map(group => `
-          <section aria-label="${group.category}">
+        list.innerHTML = `
+          <nav class="tool-index" aria-label="Categories">
+            ${groups.map((group, i) => `<a href="#cat-${i}">${group.category} <span>${group.tools.length}</span></a>`).join('')}
+          </nav>
+          <div>` + groups.map((group, i) => `
+          <section id="cat-${i}" aria-label="${group.category}">
             <h2 class="group-title lettered">${group.category}</h2>
             <ul class="tool-list">
               ${group.tools.map(tool => `
@@ -144,7 +148,7 @@
               `).join('')}
             </ul>
           </section>
-        `).join('');
+        `).join('') + '</div>';
       } catch {
         list.innerHTML = '<p class="empty">Could not load the tools list.</p>';
       }

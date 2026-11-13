@@ -89,14 +89,12 @@
 
     <div class="wrap"><p id="photoCount" class="count" aria-live="polite"></p></div>
 
-    <div id="photoGrid" class="tile-grid">
+    <div class="wrap"><div id="photoGrid" class="contact">
       <div class="tile is-skeleton" aria-hidden="true"></div>
       <div class="tile is-skeleton" aria-hidden="true"></div>
       <div class="tile is-skeleton" aria-hidden="true"></div>
       <div class="tile is-skeleton" aria-hidden="true"></div>
-      <div class="tile is-skeleton" aria-hidden="true"></div>
-      <div class="tile is-skeleton" aria-hidden="true"></div>
-    </div>
+    </div></div>
 
     <noscript><p class="wrap empty">Enable JavaScript to view the gallery.</p></noscript>
   </main>
@@ -147,7 +145,8 @@
       }
 
       if (!photos.length) {
-        grid.outerHTML = '<p class="wrap empty">No photos yet. The fox is still out scouting.</p>';
+        // the blank frames stay: an unexposed strip, with the note under it
+        grid.insertAdjacentHTML('afterend', '<p class="empty">No photos yet. The fox is still out scouting.</p>');
         return;
       }
 
