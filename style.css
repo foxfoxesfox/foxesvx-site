@@ -456,7 +456,7 @@ main.sheet, main > .sheet:first-child { padding-top: 150px; }
 /* gallery: a contact sheet. Strips of film with sprocket holes and frame numbers;
    the red grease pencil circles whichever frame you're on. */
 .contact {
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(min(50%, 230px), 1fr));
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(min(50%, 200px), 1fr));
   margin-top: 28px; border-radius: 4px; overflow: hidden; counter-reset: frame;
   background: var(--ink);
 }
@@ -470,7 +470,7 @@ main.sheet, main > .sheet:first-child { padding-top: 150px; }
     linear-gradient(#2b2d35, #2b2d35) center / calc(100% - 10px) calc(100% - 56px) no-repeat,
     var(--ink);
 }
-.contact .tile img { aspect-ratio: 3 / 2; height: auto; transform: none; }
+.contact .tile img { aspect-ratio: 3 / 4; height: auto; transform: none; }   /* portrait frames: the photos are shot upright */
 .contact .tile::after {       /* frame number on the film edge */
   content: counter(frame) 'A'; position: absolute; left: 8px; bottom: 5px; padding: 0 6px;
   font: 700 0.9375rem/18px var(--note); color: var(--under); background: var(--ink);

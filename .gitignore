@@ -22,9 +22,23 @@ Desktop.ini
 PRODUCT.md
 DESIGN.md
 
-# Claude Code local settings
-.claude/settings.local.json
+# Claude Code (local preview config and settings)
+.claude/
+
+# Full-size artwork originals: the site only uses the resized copies in assets/artworks/web/
+assets/artworks/*.jpg
+assets/artworks/*.jpeg
+assets/artworks/*.png
+
+# Raw media: originals live in iCloud; only web-ready copies belong here
+*.mov
+*.MOV
+*.mp4
+*.heic
+*.HEIC
 
 # Secrets
 .env
 .env.*
+assets/.DS_Store
+assets/.DS_Store
