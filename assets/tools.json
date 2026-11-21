@@ -4,6 +4,7 @@
     "tools": [
       { "name": "Impeccable", "url": "https://github.com/pbakaus/impeccable", "desc": "A design language for AI agents: briefs, critiques and polish passes that make interfaces look intentional." },
       { "name": "Make Interfaces Feel Better", "url": "https://github.com/jakubkrehel/make-interfaces-feel-better", "desc": "The small details (radii, hit areas, numerals, motion) that make an interface feel polished." },
+      { "name": "unslop", "url": "https://github.com/heydamir/unslop", "desc": "Damir Sokolovsky's skill that turns AI-looking UI into a designed interface, fixing spacing, colour, type and copy pass by pass like a designer's redline review." },
       { "name": "transitions.dev", "url": "https://github.com/Jakubantalik/transitions.dev", "desc": "A library of 40+ crafted UI transitions, with a skill so your agent uses them properly." },
       { "name": "Apple Design", "url": "https://github.com/emilkowalski/skills", "desc": "Emil Kowalski's take on Apple's WWDC design talks for the web: springs, gestures, sheets and fluid motion." },
       { "name": "Motion Design Skill", "url": "https://github.com/lottiefiles/motion-design-skill", "desc": "LottieFiles' timing, easing and choreography principles, adapted from Disney animation for UI." },
@@ -17,7 +18,8 @@
       { "name": "Anime.js", "url": "https://animejs.com", "desc": "A fast, lightweight JavaScript animation engine." },
       { "name": "Motion", "url": "https://motion.dev", "desc": "Animation library for React, JavaScript and Vue (formerly Framer Motion)." },
       { "name": "Remotion Skills", "url": "https://github.com/remotion-dev/skills", "desc": "Agent skills for Remotion, where videos are built with React code." },
-      { "name": "HyperFrames", "url": "https://github.com/heygen-com/hyperframes", "desc": "Write HTML, render video. Made for agents building promos and motion graphics." }
+      { "name": "HyperFrames", "url": "https://github.com/heygen-com/hyperframes", "desc": "Write HTML, render video. Made for agents building promos and motion graphics." },
+      { "name": "Lemo-Opuscar", "url": "https://github.com/lemomo-ai/lemo-opuscar", "desc": "99 film styles for your coding agent: pick one, bring your story, and it makes the whole film in code, with no video model." }
     ]
   },
   {
