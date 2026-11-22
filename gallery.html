@@ -167,7 +167,7 @@
         card.type = 'button';
         card.className = 'tile';
         card.setAttribute('aria-label', `View photo ${i + 1}`);
-        card.innerHTML = `<img src="${FOLDER}${photo.file}" alt="${photo.alt || ''}" loading="lazy" decoding="async" />`;
+        card.innerHTML = `<img src="${FOLDER}thumbs/${photo.file}" alt="${photo.alt || ''}" loading="lazy" decoding="async" />`;   // small copy on the sheet, full size in the viewer
         card.addEventListener('click', () => lightbox.open(photos, i));
         grid.appendChild(card);
       });
